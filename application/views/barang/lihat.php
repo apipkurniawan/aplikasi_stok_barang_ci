@@ -51,6 +51,7 @@
 										<td>Kode Barang</td>
 										<td>Nama Barang</td>
 										<td>Stok</td>
+										<td>Bahan Baku</td>
 										<td>Keterangan</td>						
 										<td>Aksi</td>		
 									</tr>
@@ -62,6 +63,7 @@
 											<td><?= $barang->kode_barang ?></td>
 											<td><?= $barang->nama_barang ?></td>
 											<td><?= $barang->stok ?> <?= strtoupper($barang->satuan) ?></td>
+											<td><?= $barang->bahan_baku ?></td>
 											<td><?= $barang->keterangan ?></td>
 												<td>
 													<a href="<?= base_url('barang/ubah/' . $barang->kode_barang) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></i>&nbsp;&nbsp;Edit</a>
