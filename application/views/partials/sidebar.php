@@ -23,6 +23,12 @@
 					<span>Stok Barang</span></a>
 			</li>
 
+			<li class="nav-item <?= $aktif == 'produk' ? 'active' : '' ?>">
+				<a class="nav-link" href="<?= base_url('produk') ?>">
+					<i class="fas fa-fw fa-box"></i>
+					<span>Data Produk</span></a>
+			</li>
+
 			<li class="nav-item <?= $aktif == 'customer' ? 'active' : '' ?>">
 				<a class="nav-link" href="<?= base_url('customer') ?>">
 					<i class="fas fa-fw fa-users"></i>
