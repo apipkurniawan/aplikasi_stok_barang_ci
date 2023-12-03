@@ -8,6 +8,7 @@ class Produk extends CI_Controller{
 		if($this->session->login['role'] != 'petugas' && $this->session->login['role'] != 'admin') redirect();
 		$this->data['aktif'] = 'produk';
 		$this->load->model('M_produk', 'm_produk');
+		$this->load->model('M_barang', 'm_barang');
 	}
 
 	public function index(){
@@ -25,6 +26,7 @@ class Produk extends CI_Controller{
 		}
 
 		$this->data['title'] = 'Tambah Produk';
+		$this->data['all_bahan_baku'] = $this->m_barang->lihat_bahan_baku();
 
 		$this->load->view('produk/tambah', $this->data);
 	}

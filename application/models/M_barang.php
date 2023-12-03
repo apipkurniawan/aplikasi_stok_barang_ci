@@ -18,6 +18,11 @@ class M_barang extends CI_Model{
 		return $query->result();
 	}
 
+	public function lihat_bahan_baku(){
+		$query = $this->db->get_where($this->_table, 'bahan_baku = "Y"');
+		return $query->result();
+	}
+
 	public function lihat_id($kode_barang){
 		$query = $this->db->get_where($this->_table, ['kode_barang' => $kode_barang]);
 		return $query->row();

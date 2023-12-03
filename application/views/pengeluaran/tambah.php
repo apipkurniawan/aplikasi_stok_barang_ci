@@ -102,7 +102,7 @@
 												</div>
 												<div class="form-group col-1">
 													<label for="">&nbsp;</label>
-													<button disabled type="button" class="btn btn-primary btn-block" id="tambah"><i class="fa fa-plus"></i></button>
+													<button type="button" class="btn btn-primary btn-block" id="tambah"><i class="fa fa-plus"></i></button>
 												</div>
 												<input type="hidden" name="satuan" value="">
 											</div>
