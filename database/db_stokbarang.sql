@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 03:24 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Dec 03, 2023 at 05:27 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,19 +33,20 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(80) DEFAULT NULL,
   `stok` int(11) DEFAULT NULL,
   `satuan` varchar(20) DEFAULT NULL,
+  `bahan_baku` varchar(5) NOT NULL,
   `keterangan` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `stok`, `satuan`, `keterangan`) VALUES
-(72, '73283591', 'Kopi Arabica', 12000, 'gram', 'Bahan kopi arabica'),
-(73, '28976397', 'Susu', 5000, 'mili', 'Susu ultra'),
-(74, '44375559', 'Kentang', 500, 'kg', 'Kentang mentah'),
-(75, '23701832', 'Beras', 15, 'kg', 'beras putih'),
-(76, '21168932', 'Treh', 1950, 'gram', 'Teh tubruk');
+INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `stok`, `satuan`, `bahan_baku`, `keterangan`) VALUES
+(78, '70641935', 'Chocolate Powder', 1000, 'gram', 'Y', ''),
+(79, '13819278', 'Fanta', 50, 'pcs', 'N', ''),
+(80, '92023045', 'Milk', 30, 'liter', 'Y', ''),
+(81, '41512196', 'Cream', 40, 'kg', 'Y', ''),
+(82, '90007606', 'Sampoerna Mild', 25, 'pack', 'N', '');
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,7 @@ CREATE TABLE `customer` (
   `email` varchar(100) DEFAULT NULL,
   `telepon` varchar(15) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer`
@@ -83,7 +84,7 @@ CREATE TABLE `data_toko` (
   `nama_pemilik` varchar(80) DEFAULT NULL,
   `no_telepon` varchar(15) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `data_toko`
@@ -104,7 +105,7 @@ CREATE TABLE `detail_keluar` (
   `jumlah` int(11) DEFAULT NULL,
   `satuan` varchar(20) DEFAULT NULL,
   `keterangan` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `detail_keluar`
@@ -118,6 +119,19 @@ INSERT INTO `detail_keluar` (`no_keluar`, `nama_barang`, `jumlah`, `satuan`, `ke
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `detail_produk`
+--
+
+CREATE TABLE `detail_produk` (
+  `kode_produk` varchar(20) NOT NULL,
+  `bahan_baku` varchar(30) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `satuan` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `detail_terima`
 --
 
@@ -127,7 +141,7 @@ CREATE TABLE `detail_terima` (
   `jumlah` int(11) DEFAULT NULL,
   `satuan` varchar(20) DEFAULT NULL,
   `keterangan` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `detail_terima`
@@ -152,7 +166,7 @@ CREATE TABLE `penerimaan` (
   `jam_terima` varchar(10) DEFAULT NULL,
   `nama_supplier` varchar(80) DEFAULT NULL,
   `nama_petugas` varchar(80) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penerimaan`
@@ -177,7 +191,7 @@ CREATE TABLE `pengeluaran` (
   `jam_keluar` varchar(10) DEFAULT NULL,
   `nama_customer` varchar(80) DEFAULT NULL,
   `nama_petugas` varchar(80) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengeluaran`
@@ -200,7 +214,7 @@ CREATE TABLE `pengguna` (
   `nama` varchar(100) DEFAULT NULL,
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengguna`
@@ -221,7 +235,7 @@ CREATE TABLE `petugas` (
   `nama` varchar(100) DEFAULT NULL,
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `petugas`
@@ -231,6 +245,17 @@ INSERT INTO `petugas` (`id`, `kode`, `nama`, `username`, `password`) VALUES
 (3, 'PETUGAS - 35', 'Faisol', 'faisol', 'faisol'),
 (4, 'PETUGAS - 43', 'Hadi', 'hadi', 'hadi'),
 (6, 'PETUGAS - 61', 'Teknisi', 'teknisi', 'teknisi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produk`
+--
+
+CREATE TABLE `produk` (
+  `kode_produk` varchar(15) NOT NULL,
+  `nama_produk` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -245,7 +270,7 @@ CREATE TABLE `supplier` (
   `email` varchar(100) DEFAULT NULL,
   `telepon` varchar(15) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `supplier`
@@ -280,6 +305,12 @@ ALTER TABLE `data_toko`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `detail_produk`
+--
+ALTER TABLE `detail_produk`
+  ADD PRIMARY KEY (`kode_produk`);
+
+--
 -- Indexes for table `penerimaan`
 --
 ALTER TABLE `penerimaan`
@@ -306,6 +337,12 @@ ALTER TABLE `petugas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `produk`
+--
+ALTER TABLE `produk`
+  ADD PRIMARY KEY (`kode_produk`);
+
+--
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -319,7 +356,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `customer`
