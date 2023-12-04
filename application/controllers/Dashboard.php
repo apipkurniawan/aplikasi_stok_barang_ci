@@ -6,7 +6,6 @@ class Dashboard extends CI_Controller{
 		if($this->session->login['role'] != 'petugas' && $this->session->login['role'] != 'admin') redirect();
 		$this->data['aktif'] = 'dashboard';
 		$this->load->model('M_barang', 'm_barang');
-		$this->load->model('M_customer', 'm_customer');
 		$this->load->model('M_supplier', 'm_supplier');
 		$this->load->model('M_petugas', 'm_petugas');
 		$this->load->model('M_pengeluaran', 'm_pengeluaran');
@@ -18,7 +17,6 @@ class Dashboard extends CI_Controller{
 	public function index(){
 		$this->data['title'] = 'Halaman Dashboard';
 		$this->data['jumlah_barang'] = $this->m_barang->jumlah();
-		$this->data['jumlah_customer'] = $this->m_customer->jumlah();
 		$this->data['jumlah_supplier'] = $this->m_supplier->jumlah();
 		$this->data['jumlah_petugas'] = $this->m_petugas->jumlah();
 		$this->data['jumlah_pengeluaran'] = $this->m_pengeluaran->jumlah();

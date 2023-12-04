@@ -29,12 +29,6 @@
 					<span>Data Produk</span></a>
 			</li>
 
-			<li class="nav-item <?= $aktif == 'customer' ? 'active' : '' ?>">
-				<a class="nav-link" href="<?= base_url('customer') ?>">
-					<i class="fas fa-fw fa-users"></i>
-					<span>Data Customer</span></a>
-			</li>
-
 			<li class="nav-item <?= $aktif == 'supplier' ? 'active' : '' ?>">
 				<a class="nav-link" href="<?= base_url('supplier') ?>">
 					<i class="fas fa-fw fa-user"></i>

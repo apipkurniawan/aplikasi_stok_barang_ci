@@ -8,7 +8,6 @@ class Pengeluaran extends CI_Controller{
 		date_default_timezone_set('Asia/Jakarta');
 		$this->data['aktif'] = 'pengeluaran';
 		$this->load->model('M_barang', 'm_barang');
-		$this->load->model('M_customer', 'm_customer');
 		$this->load->model('M_pengeluaran', 'm_pengeluaran');
 		$this->load->model('M_detail_keluar', 'm_detail_keluar');
 	}
@@ -24,7 +23,6 @@ class Pengeluaran extends CI_Controller{
 	public function tambah(){
 		$this->data['title'] = 'Tambah Transaksi';
 		$this->data['all_barang'] = $this->m_barang->lihat_stok();
-		$this->data['all_customer'] = $this->m_customer->lihat_cst();
 
 		$this->load->view('pengeluaran/tambah', $this->data);
 	}

@@ -54,27 +54,7 @@
 											<input type="text" name="jam_keluar" value="<?= date('H:i:s') ?>" readonly class="form-control">
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<h5>Data Customer</h5>
-											<hr>
-											<div class="form-row">
-												<div class="form-group col-10">
-													<label for="nama_customer">Nama Pengambil</label>
-													<select name="nama_customer" id="nama_customer" class="form-control">
-														<option value="">Pilih Pengambil</option>
-														<?php foreach ($all_customer as $customer): ?>
-															<option value="<?= $customer->nama ?>"><?= $customer->nama ?></option>
-														<?php endforeach ?>
-													</select>
-												</div>
-												<div class="form-group col-2">
-													<label for="">&nbsp;</label>
-													<button disabled type="button" class="btn btn-danger btn-block" id="reset"><i class="fa fa-times"></i></button>
-												</div>
-												<input type="hidden" name="nama_customer" value="">
-											</div>
-										</div>
+									<div class="row">										
 										<div class="col-md-8">
 											<h5>Data Barang</h5>
 											<hr>
