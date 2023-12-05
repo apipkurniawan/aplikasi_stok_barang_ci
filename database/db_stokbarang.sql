@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2023 at 05:27 PM
+-- Generation Time: Dec 05, 2023 at 07:07 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,35 +42,11 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `stok`, `satuan`, `bahan_baku`, `keterangan`) VALUES
-(78, '70641935', 'Chocolate Powder', 1000, 'gram', 'Y', ''),
-(79, '13819278', 'Fanta', 50, 'pcs', 'N', ''),
-(80, '92023045', 'Milk', 30, 'liter', 'Y', ''),
+(78, '70641935', 'Chocolate Powder', 950, 'gram', 'Y', ''),
+(79, '13819278', 'Fanta', 60, 'pcs', 'N', ''),
+(80, '92023045', 'Milk', 3000, 'mil', 'Y', ''),
 (81, '41512196', 'Cream', 40, 'kg', 'Y', ''),
 (82, '90007606', 'Sampoerna Mild', 25, 'pack', 'N', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer`
---
-
-CREATE TABLE `customer` (
-  `id` int(11) NOT NULL,
-  `kode` varchar(20) DEFAULT NULL,
-  `nama` varchar(80) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `telepon` varchar(15) DEFAULT NULL,
-  `alamat` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`id`, `kode`, `nama`, `email`, `telepon`, `alamat`) VALUES
-(14, 'CST956', 'Bambang', NULL, '1', NULL),
-(17, 'CST414', 'Putra', NULL, '10', NULL),
-(18, 'CST471', 'Jajang', NULL, '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,7 +77,7 @@ INSERT INTO `data_toko` (`id`, `nama_toko`, `nama_pemilik`, `no_telepon`, `alama
 
 CREATE TABLE `detail_keluar` (
   `no_keluar` varchar(25) DEFAULT NULL,
-  `nama_barang` varchar(80) DEFAULT NULL,
+  `kode_barang` varchar(80) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
   `satuan` varchar(20) DEFAULT NULL,
   `keterangan` char(50) NOT NULL
@@ -111,10 +87,8 @@ CREATE TABLE `detail_keluar` (
 -- Dumping data for table `detail_keluar`
 --
 
-INSERT INTO `detail_keluar` (`no_keluar`, `nama_barang`, `jumlah`, `satuan`, `keterangan`) VALUES
-('TR1696608167', 'Kentang', 1500, 'kg', 'Kentang mentah'),
-('TR1701401914', 'Beras', 5, 'kg', 'beras putih'),
-('TR1701419168', 'Treh', 50, 'gram', 'Teh tubruk');
+INSERT INTO `detail_keluar` (`no_keluar`, `kode_barang`, `jumlah`, `satuan`, `keterangan`) VALUES
+('TR1701793788', '70641935', 100, 'gram', '');
 
 -- --------------------------------------------------------
 
@@ -123,10 +97,10 @@ INSERT INTO `detail_keluar` (`no_keluar`, `nama_barang`, `jumlah`, `satuan`, `ke
 --
 
 CREATE TABLE `detail_produk` (
-  `kode_produk` varchar(20) NOT NULL,
-  `bahan_baku` varchar(30) NOT NULL,
+  `kode_barang` varchar(20) NOT NULL,
   `qty` int(11) NOT NULL,
-  `satuan` varchar(20) NOT NULL
+  `satuan` varchar(20) NOT NULL,
+  `kode_produk` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -137,7 +111,7 @@ CREATE TABLE `detail_produk` (
 
 CREATE TABLE `detail_terima` (
   `no_terima` varchar(25) DEFAULT NULL,
-  `nama_barang` varchar(80) DEFAULT NULL,
+  `kode_barang` varchar(80) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
   `satuan` varchar(20) DEFAULT NULL,
   `keterangan` char(50) NOT NULL
@@ -147,11 +121,9 @@ CREATE TABLE `detail_terima` (
 -- Dumping data for table `detail_terima`
 --
 
-INSERT INTO `detail_terima` (`no_terima`, `nama_barang`, `jumlah`, `satuan`, `keterangan`) VALUES
-('TR1696608111', 'Kentang', 1000, 'kg', 'Kentang mentah'),
-('TR1696610410', 'Kopi Arabica', 2000, 'gram', 'Bahan kopi arabica'),
-('TR1701401768', 'Beras', 10, 'kg', 'beras putih'),
-('TR1701418880', 'Treh', 1000, 'gram', 'Teh tubruk');
+INSERT INTO `detail_terima` (`no_terima`, `kode_barang`, `jumlah`, `satuan`, `keterangan`) VALUES
+('TR1701798487', '70641935', 50, 'gram', ''),
+('TR1701799211', '13819278', 10, 'pcs', '');
 
 -- --------------------------------------------------------
 
@@ -164,19 +136,17 @@ CREATE TABLE `penerimaan` (
   `no_terima` varchar(25) DEFAULT NULL,
   `tgl_terima` varchar(25) DEFAULT NULL,
   `jam_terima` varchar(10) DEFAULT NULL,
-  `nama_supplier` varchar(80) DEFAULT NULL,
-  `nama_petugas` varchar(80) DEFAULT NULL
+  `kode_supplier` varchar(80) DEFAULT NULL,
+  `kode_petugas` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penerimaan`
 --
 
-INSERT INTO `penerimaan` (`id`, `no_terima`, `tgl_terima`, `jam_terima`, `nama_supplier`, `nama_petugas`) VALUES
-(24, 'TR1696608111', '06/10/2023', '23:01:51', 'Agen kentang', 'For Coffee'),
-(25, 'TR1696610410', '06/10/2023', '23:40:10', 'Agen Kopi ', 'For Coffee'),
-(26, 'TR1701401768', '01/12/2023', '10:36:08', 'Ujang jangkung beras', 'For Coffee'),
-(27, 'TR1701418880', '01/12/2023', '15:21:20', 'Ujang jangkung beras', 'For Coffee');
+INSERT INTO `penerimaan` (`id`, `no_terima`, `tgl_terima`, `jam_terima`, `kode_supplier`, `kode_petugas`) VALUES
+(28, 'TR1701798487', '06/12/2023', '00:48:07', NULL, 'PENGGUNA - 18'),
+(29, 'TR1701799211', '06/12/2023', '01:00:11', 'SPL740', 'PENGGUNA - 18');
 
 -- --------------------------------------------------------
 
@@ -189,18 +159,15 @@ CREATE TABLE `pengeluaran` (
   `no_keluar` varchar(25) DEFAULT NULL,
   `tgl_keluar` varchar(25) DEFAULT NULL,
   `jam_keluar` varchar(10) DEFAULT NULL,
-  `nama_customer` varchar(80) DEFAULT NULL,
-  `nama_petugas` varchar(80) DEFAULT NULL
+  `kode_petugas` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengeluaran`
 --
 
-INSERT INTO `pengeluaran` (`id`, `no_keluar`, `tgl_keluar`, `jam_keluar`, `nama_customer`, `nama_petugas`) VALUES
-(26, 'TR1696608167', '06/10/2023', '23:02:47', 'Bambang', 'For Coffee'),
-(27, 'TR1701401914', '01/12/2023', '10:38:34', 'Jajang', 'For Coffee'),
-(28, 'TR1701419168', '01/12/2023', '15:26:08', 'Bambang', 'For Coffee');
+INSERT INTO `pengeluaran` (`id`, `no_keluar`, `tgl_keluar`, `jam_keluar`, `kode_petugas`) VALUES
+(30, 'TR1701793788', '05/12/2023', '23:29:48', 'PENGGUNA - 18');
 
 -- --------------------------------------------------------
 
@@ -221,7 +188,7 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `kode`, `nama`, `username`, `password`) VALUES
-(3, 'PENGGUNA - 18', 'For Coffee', 'kasir', 'kasir');
+(3, 'PENGGUNA - 18', 'For Coffee', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -242,9 +209,8 @@ CREATE TABLE `petugas` (
 --
 
 INSERT INTO `petugas` (`id`, `kode`, `nama`, `username`, `password`) VALUES
-(3, 'PETUGAS - 35', 'Faisol', 'faisol', 'faisol'),
-(4, 'PETUGAS - 43', 'Hadi', 'hadi', 'hadi'),
-(6, 'PETUGAS - 61', 'Teknisi', 'teknisi', 'teknisi');
+(3, 'PETUGAS - 35', 'Faisol', 'kasir1', 'kasir1'),
+(4, 'PETUGAS - 43', 'Hadi', 'kasir2', 'kasir2');
 
 -- --------------------------------------------------------
 
@@ -265,7 +231,7 @@ CREATE TABLE `produk` (
 
 CREATE TABLE `supplier` (
   `id` int(11) NOT NULL,
-  `kode` varchar(20) DEFAULT NULL,
+  `kode_supplier` varchar(20) DEFAULT NULL,
   `nama` varchar(80) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `telepon` varchar(15) DEFAULT NULL,
@@ -276,7 +242,7 @@ CREATE TABLE `supplier` (
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`id`, `kode`, `nama`, `email`, `telepon`, `alamat`) VALUES
+INSERT INTO `supplier` (`id`, `kode_supplier`, `nama`, `email`, `telepon`, `alamat`) VALUES
 (2, 'SPL118', 'Agen Kopi ', 'agenkopi@gmail.com', '081224408529', 'Bandung'),
 (3, 'SPL740', 'Susu Murni Ultra', 'Susuultra@gmail.com', '081224408520', 'Kuningan'),
 (4, 'SPL418', 'Agen kentang', 'kentang@gmail.com', '08746646464', 'Japara'),
@@ -293,22 +259,10 @@ ALTER TABLE `barang`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `data_toko`
 --
 ALTER TABLE `data_toko`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `detail_produk`
---
-ALTER TABLE `detail_produk`
-  ADD PRIMARY KEY (`kode_produk`);
 
 --
 -- Indexes for table `penerimaan`
@@ -359,12 +313,6 @@ ALTER TABLE `barang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
 -- AUTO_INCREMENT for table `data_toko`
 --
 ALTER TABLE `data_toko`
@@ -374,13 +322,13 @@ ALTER TABLE `data_toko`
 -- AUTO_INCREMENT for table `penerimaan`
 --
 ALTER TABLE `penerimaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
