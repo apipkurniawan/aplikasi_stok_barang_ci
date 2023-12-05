@@ -81,7 +81,7 @@
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>
-                                                    <input type="hidden" name="nama_supplier" value="">
+                                                    <input type="hidden" name="kode_supplier" value="">
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
@@ -190,6 +190,11 @@
                 $('input[name="satuan"]').val(satuan)
                 $('input[name="stok"]').val(stok)
             }
+        })
+
+        $('#nama_supplier').on('change', function() {
+            const pKodeSupp = $(this).val().split(' - ')[1];
+            $('input[name="kode_supplier"]').val(pKodeSupp)
         })
 
         $(document).on('click', '#tambah', function(e) {

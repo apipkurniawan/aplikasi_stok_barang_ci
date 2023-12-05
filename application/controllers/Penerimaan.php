@@ -36,7 +36,7 @@ class Penerimaan extends CI_Controller{
 			'no_terima' => $this->input->post('no_terima'),
 			'tgl_terima' => $this->input->post('tgl_terima'),
 			'jam_terima' => $this->input->post('jam_terima'),
-			'kode_supplier' => explode(' - ', $this->input->post('nama_supplier'))[1],
+			'kode_supplier' => $this->input->post('kode_supplier'),
 			'kode_petugas' => $this->input->post('kode_petugas'),
 		];
 
