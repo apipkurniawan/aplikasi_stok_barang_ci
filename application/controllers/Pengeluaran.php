@@ -49,7 +49,7 @@ class Pengeluaran extends CI_Controller{
 
 		if ($this->m_pengeluaran->tambah($data_keluar) && $this->m_detail_keluar->tambah($data_detail_keluar)) {
 			for ($i=0; $i < $jumlah_barang_keluar ; $i++) { 
-				$this->m_barang->min_stok($data_detail_keluar[$i]['jumlah'], $data_detail_keluar[$i]['nama_barang']) or die('gagal min stok');
+				$this->m_barang->min_stok($data_detail_keluar[$i]['jumlah'], $data_detail_keluar[$i]['kode_barang']) or die('gagal min stok');
 			}
 			$this->session->set_flashdata('success', 'Invoice <strong>Pengeluaran</strong> Berhasil Dibuat!');
 			redirect('pengeluaran');
