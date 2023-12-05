@@ -207,17 +207,14 @@
                     type: 'POST',
                     data: data_keranjang,
                     success: function(data) {
-                        // if ($('select[name="nama_barang"]').val() == data_keranjang
-                        //     .nama_barang) $('option[value="' + data_keranjang.nama_barang +
-                        //     '"]').hide()
+                        if ($('select[name="nama_barang"]').val() == data_keranjang
+                            .nama_barang) $('option[value="' + data_keranjang.nama_barang +
+                            '"]').hide()
 
                         reset()
 
                         $('table#keranjang tbody').append(data)
                         $('tfoot').show()
-
-                        // $('#total').html('<strong>' + hitung_total() + '</strong>')
-                        // $('input[name="total_hidden"]').val(hitung_total())
                     }
                 })
             }
@@ -225,6 +222,7 @@
 
         $(document).on('click', '#tombol-hapus', function() {
             $(this).closest('.row-keranjang').remove()
+            $('option[value="' + $(this).data('nama-barang') + '"]').show()
             if ($('tbody').children().length == 0) $('tfoot').hide()
         })
 

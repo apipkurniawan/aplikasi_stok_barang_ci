@@ -142,7 +142,10 @@
             const fQty = $('input[name="qty"]').val();
             const fNamaProduk = $('input[name="nama_produk"]').val();
             const fSatuan = $('input[name="satuan"]').val();
-            if (!fBahanBaku || !fQty || !fNamaProduk || !fSatuan) return;
+            if (!fBahanBaku || !fQty || !fNamaProduk || !fSatuan) {
+                alert('Isi data terlebih dahulu!')
+                return
+            }
 
             const url_keranjang_produk = $('#content').data('url') + '/keranjang_produk'
             const data_keranjang = {

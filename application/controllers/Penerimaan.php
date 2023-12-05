@@ -36,15 +36,15 @@ class Penerimaan extends CI_Controller{
 			'no_terima' => $this->input->post('no_terima'),
 			'tgl_terima' => $this->input->post('tgl_terima'),
 			'jam_terima' => $this->input->post('jam_terima'),
-			'nama_supplier' => $this->input->post('nama_supplier'),
-			'nama_petugas' => $this->input->post('nama_petugas'),
+			'kode_supplier' => explode(' - ', $this->input->post('nama_supplier'))[1],
+			'kode_petugas' => $this->input->post('kode_petugas'),
 		];
 
 		$data_detail_terima = [];
 
 		for($i = 0; $i < $jumlah_barang_diterima; $i++){
 			array_push($data_detail_terima, ['no_terima' => $this->input->post('no_terima')]);
-			$data_detail_terima[$i]['nama_barang'] = $this->input->post('nama_barang_hidden')[$i];
+			$data_detail_terima[$i]['kode_barang'] = explode(' - ', $this->input->post('nama_barang_hidden')[$i])[1];
 			$data_detail_terima[$i]['jumlah'] = $this->input->post('jumlah_hidden')[$i];
 			$data_detail_terima[$i]['satuan'] = $this->input->post('satuan_hidden')[$i];
 			$data_detail_terima[$i]['keterangan'] = $this->input->post('keterangan_hidden')[$i];
@@ -52,7 +52,7 @@ class Penerimaan extends CI_Controller{
 
 		if($this->m_penerimaan->tambah($data_terima) && $this->m_detail_terima->tambah($data_detail_terima)){
 			for ($i=0; $i < $jumlah_barang_diterima ; $i++) { 
-				$this->m_barang->plus_stok($data_detail_terima[$i]['jumlah'], $data_detail_terima[$i]['nama_barang']) or die('gagal min stok');
+				$this->m_barang->plus_stok($data_detail_terima[$i]['jumlah'], $data_detail_terima[$i]['kode_barang']) or die('gagal min stok');
 			}
 			$this->session->set_flashdata('success', 'Invoice <strong>Penerimaan</strong> Berhasil Dibuat!');
 			redirect('penerimaan');
