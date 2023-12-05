@@ -73,7 +73,18 @@
                                                         <?= $barang->satuan == 'mili' ? 'selected' : '' ?>>mil</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-8">
+                                            <div class="form-group col-md-4">
+                                                <label for="bahan_baku"><strong>Bahan Baku</strong></label>
+                                                <select name="bahan_baku" id="bahan_baku" class="form-control" required>
+                                                    <option value="">Silahkan Pilih</option>
+                                                    <option value="Y"
+                                                        <?= $barang->bahan_baku == 'Y' ? 'selected' : '' ?>>Ya</option>
+                                                    <option value="N"
+                                                        <?= $barang->bahan_baku == 'N' ? 'selected' : '' ?>>Tidak
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
                                                 <label for="keterangan"><strong>Keterangan</strong></label>
                                                 <input type="text" name="keterangan" placeholder="Masukkan Keterangan"
                                                     autocomplete="off" class="form-control"
