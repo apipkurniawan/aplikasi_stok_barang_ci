@@ -86,6 +86,7 @@
                                                         <td width="35%">Bahan Baku</td>
                                                         <td width="15%">Qty</td>
                                                         <td width="15%">Satuan</td>
+                                                        <td width="15%">Aksi</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
