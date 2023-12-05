@@ -115,6 +115,8 @@
     <?php $this->load->view('partials/js.php') ?>
     <script>
     $(document).ready(function() {
+        const allBahanBaku = $.parseJSON('<?= json_encode($all_bahan_baku) ?>');
+
         $('tfoot').hide()
 
         $(document).keypress(function(event) {
@@ -126,40 +128,11 @@
         // onchange dropdown bahan baku
         $('#bahan_baku').on('change', function() {
             const pKodeBrg = $(this).val().split(' - ')[1]
-            console.log('onchange dropdown..', pKodeBrg)
+
             if (!pKodeBrg) reset()
             else {
-                const url_get_all_barang = $('#content').data('url') + '/get_all_barang'
-                console.log('url..', url_get_all_barang)
-                $.ajax({
-                    url: url_get_all_barang,
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        kode_barang: pKodeBrg
-                    },
-                    success: function(data) {
-                        console.log('data..', data)
-                        $('input[name="kode_barang"]').val(data.kode_barang)
-                        $('input[name="harga_barang"]').val(data.harga_jual)
-                        $('input[name="jumlah"]').val(1)
-                        $('input[name="satuan"]').val(data.satuan)
-                        $('input[name="keterangan"]').val(data.keterangan)
-                        $('input[name="max_hidden"]').val(data.stok)
-                        $('input[name="jumlah"]').prop('readonly', false)
-                        $('button#tambah').prop('disabled', false)
-
-                        $('input[name="sub_total"]').val($('input[name="jumlah"]').val() *
-                            $('input[name="harga_barang"]').val())
-
-                        $('input[name="jumlah"]').on('keydown keyup change blur',
-                            function() {
-                                $('input[name="sub_total"]').val($(
-                                    'input[name="jumlah"]').val() * $(
-                                    'input[name="harga_barang"]').val())
-                            })
-                    }
-                })
+                const satuan = getSatuanBarang(pKodeBrg)
+                $('input[name="satuan"]').val(satuan)
             }
         })
 
@@ -202,6 +175,12 @@
             $('#bahan_baku').val('')
             $('input[name="satuan"]').val('')
             $('input[name="qty"]').val('')
+        }
+
+        function getSatuanBarang(kodeBrg) {
+            return $.grep(allBahanBaku, function(obj) {
+                return obj.kode_barang == kodeBrg
+            })[0].satuan
         }
     })
     </script>
