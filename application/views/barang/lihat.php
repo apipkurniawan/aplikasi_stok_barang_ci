@@ -65,7 +65,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $barang->kode_barang ?></td>
                                             <td><?= $barang->nama_barang ?></td>
-                                            <td><?= $barang->stok ?> <?= strtoupper($barang->satuan) ?></td>
+                                            <td><?= $barang->stok ?> <?= strtolower($barang->satuan) ?></td>
                                             <td><?= $barang->bahan_baku ?></td>
                                             <td><?= $barang->keterangan ?></td>
                                             <td style="text-align: center;">
