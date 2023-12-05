@@ -34,21 +34,20 @@ class Pengeluaran extends CI_Controller{
 			'no_keluar' => $this->input->post('no_keluar'),
 			'tgl_keluar' => $this->input->post('tgl_keluar'),
 			'jam_keluar' => $this->input->post('jam_keluar'),
-			'nama_customer' => $this->input->post('nama_customer'),
-			'nama_petugas' => $this->input->post('nama_petugas'),
+			'kode_petugas' => $this->input->post('kode_petugas'),
 		];
 
 		$data_detail_keluar = [];
 
 		for($i = 0; $i < $jumlah_barang_keluar; $i++){
 			array_push($data_detail_keluar, ['no_keluar' => $this->input->post('no_keluar')]);
-			$data_detail_keluar[$i]['nama_barang'] = $this->input->post('nama_barang_hidden')[$i];
+			$data_detail_keluar[$i]['kode_barang'] = explode(" - ", $this->input->post('nama_barang_hidden')[$i])[1];
 			$data_detail_keluar[$i]['jumlah'] = $this->input->post('jumlah_hidden')[$i];
 			$data_detail_keluar[$i]['satuan'] = $this->input->post('satuan_hidden')[$i];
 			$data_detail_keluar[$i]['keterangan'] = $this->input->post('keterangan_hidden')[$i];
 		}
 
-		if($this->m_pengeluaran->tambah($data_keluar) && $this->m_detail_keluar->tambah($data_detail_keluar)){
+		if ($this->m_pengeluaran->tambah($data_keluar) && $this->m_detail_keluar->tambah($data_detail_keluar)) {
 			for ($i=0; $i < $jumlah_barang_keluar ; $i++) { 
 				$this->m_barang->min_stok($data_detail_keluar[$i]['jumlah'], $data_detail_keluar[$i]['nama_barang']) or die('gagal min stok');
 			}

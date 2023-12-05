@@ -57,7 +57,6 @@
                                             <td>Nama Barang</td>
                                             <td>Jumlah</td>
                                             <td>Nama Petugas</td>
-                                            <td>Nama Pengambil</td>
                                             <td>Tanggal Keluar</td>
                                             <td>Keterangan</td>
                                             <?php if ($this->session->login['role'] == 'admin'): ?>
@@ -70,10 +69,9 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $pengeluaran->no_keluar ?></td>
-                                            <td><?= $pengeluaran->nama_barang ?></td>
+                                            <td><?= $pengeluaran->kode_barang ?></td>
                                             <td><?= $pengeluaran->jumlah ?></td>
-                                            <td><?= $pengeluaran->nama_petugas ?></td>
-                                            <td><?= $pengeluaran->nama_customer ?></td>
+                                            <td><?= $pengeluaran->kode_petugas ?></td>
                                             <td><?= $pengeluaran->tgl_keluar ?> <?= $pengeluaran->jam_keluar ?></td>
                                             <td><?= $pengeluaran->keterangan ?></td>
                                             <td style="text-align: center;">
