@@ -101,7 +101,7 @@ class Produk extends CI_Controller{
 			redirect('dashboard');
 		}
 		
-		if($this->m_produk->hapus($kode_produk)){
+		if($this->m_produk->hapus($kode_produk) && $this->m_detail_produk->hapus($kode_produk)){
 			$this->session->set_flashdata('success', 'Data Produk <strong>Berhasil</strong> Dihapus!');
 			redirect('produk');
 		} else {
