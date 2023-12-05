@@ -54,10 +54,10 @@
                                         <tr>
                                             <td>No</td>
                                             <td>No Terima</td>
-                                            <td>Kode Barang</td>
+                                            <td>Nama Barang</td>
                                             <td>Jumlah</td>
-                                            <td>Kode Petugas</td>
-                                            <td>Kode Supplier</td>
+                                            <td>Nama Petugas</td>
+                                            <td>Nama Supplier</td>
                                             <td>Tanggal Terima</td>
                                             <?php if ($this->session->login['role'] == 'admin'): ?>
                                             <td>Aksi</td>
@@ -69,10 +69,10 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $penerimaan->no_terima ?></td>
-                                            <td><?= $penerimaan->kode_barang ?></td>
+                                            <td><?= $penerimaan->nama_barang ?></td>
                                             <td><?= $penerimaan->jumlah ?></td>
-                                            <td><?= $penerimaan->kode_petugas ?></td>
-                                            <td><?= $penerimaan->kode_supplier ?></td>
+                                            <td><?= $penerimaan->user ?></td>
+                                            <td><?= $penerimaan->supplier ?></td>
                                             <td><?= $penerimaan->tgl_terima ?> <?= $penerimaan->jam_terima ?></td>
                                             <td style="text-align: center;">
                                                 <?php if ($this->session->login['role'] == 'admin'): ?>

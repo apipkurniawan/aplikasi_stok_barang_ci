@@ -15,7 +15,7 @@ class Penerimaan extends CI_Controller{
 
 	public function index(){
 		$this->data['title'] = 'Transaksi Penerimaan';
-		$this->data['all_penerimaan'] = $this->m_penerimaan->lihat();
+		$this->data['all_penerimaan'] = $this->m_penerimaan->getDataRelasi();
 		$this->data['no'] = 1;
 
 		$this->load->view('penerimaan/lihat', $this->data);
