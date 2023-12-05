@@ -111,4 +111,9 @@ class Produk extends CI_Controller{
 		$dompdf->stream('Laporan Data Produk Tanggal ' . date('d F Y'), array("Attachment" => false));
 		
 	}
+
+	public function keranjang_produk() {
+		$this->load->view('produk/keranjang');
+	}
+	
 }

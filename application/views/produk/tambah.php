@@ -51,17 +51,19 @@
                                                 <label for=""><strong>Bahan Baku</strong></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-4">
-                                                        <select name="bahan_baku" id="bahan_baku" class="form-control">
+                                                        <select name="bahan_baku" id="bahan_baku" class="form-control"
+                                                            required>
                                                             <option value="">Pilih Bahan Baku</option>
                                                             <?php foreach ($all_bahan_baku as $barang): ?>
-                                                            <option value="<?= $barang->nama_barang ?>">
+                                                            <option
+                                                                value="<?= $barang->nama_barang ?> - <?= $barang->kode_barang ?>">
                                                                 <?= $barang->nama_barang ?></option>
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-2">
                                                         <input type="number" name="qty" value="" class="form-control"
-                                                            min='1'>
+                                                            min='1' required>
                                                     </div>
                                                     <div class="form-group col-2">
                                                         <input type="text" name="satuan" value="" class="form-control"
@@ -111,6 +113,98 @@
         </div>
     </div>
     <?php $this->load->view('partials/js.php') ?>
+    <script>
+    $(document).ready(function() {
+        $('tfoot').hide()
+
+        $(document).keypress(function(event) {
+            if (event.which == '13') {
+                event.preventDefault();
+            }
+        })
+
+        // onchange dropdown bahan baku
+        $('#bahan_baku').on('change', function() {
+            const pKodeBrg = $(this).val().split(' - ')[1]
+            console.log('onchange dropdown..', pKodeBrg)
+            if (!pKodeBrg) reset()
+            else {
+                const url_get_all_barang = $('#content').data('url') + '/get_all_barang'
+                console.log('url..', url_get_all_barang)
+                $.ajax({
+                    url: url_get_all_barang,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        kode_barang: pKodeBrg
+                    },
+                    success: function(data) {
+                        console.log('data..', data)
+                        $('input[name="kode_barang"]').val(data.kode_barang)
+                        $('input[name="harga_barang"]').val(data.harga_jual)
+                        $('input[name="jumlah"]').val(1)
+                        $('input[name="satuan"]').val(data.satuan)
+                        $('input[name="keterangan"]').val(data.keterangan)
+                        $('input[name="max_hidden"]').val(data.stok)
+                        $('input[name="jumlah"]').prop('readonly', false)
+                        $('button#tambah').prop('disabled', false)
+
+                        $('input[name="sub_total"]').val($('input[name="jumlah"]').val() *
+                            $('input[name="harga_barang"]').val())
+
+                        $('input[name="jumlah"]').on('keydown keyup change blur',
+                            function() {
+                                $('input[name="sub_total"]').val($(
+                                    'input[name="jumlah"]').val() * $(
+                                    'input[name="harga_barang"]').val())
+                            })
+                    }
+                })
+            }
+        })
+
+        // add detail product
+        $(document).on('click', '#tambah', function(e) {
+            const fBahanBaku = $('select[name="bahan_baku"]').val();
+            const fQty = $('input[name="qty"]').val();
+            const fNamaProduk = $('input[name="nama_produk"]').val();
+            const fSatuan = $('input[name="satuan"]').val();
+            if (!fBahanBaku || !fQty || !fNamaProduk || !fSatuan) return;
+
+            const url_keranjang_produk = $('#content').data('url') + '/keranjang_produk'
+            const data_keranjang = {
+                bahan_baku: fBahanBaku,
+                qty: fQty,
+                satuan: fSatuan
+            }
+
+            $.ajax({
+                url: url_keranjang_produk,
+                type: 'POST',
+                data: data_keranjang,
+                success: function(data) {
+                    reset()
+                    $('table#keranjang tbody').append(data)
+                    $('tfoot').show()
+                }
+            })
+
+        })
+
+        // delete row
+        $(document).on('click', '#tombol-hapus', function() {
+            $(this).closest('.row-keranjang').remove()
+            if ($('tbody').children().length == 0) $('tfoot').hide()
+        })
+
+        // clear field
+        function reset() {
+            $('#bahan_baku').val('')
+            $('input[name="satuan"]').val('')
+            $('input[name="qty"]').val('')
+        }
+    })
+    </script>
 </body>
 
 </html>
