@@ -51,8 +51,7 @@
                                                 <label for=""><strong>Bahan Baku</strong></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-4">
-                                                        <select name="bahan_baku" id="bahan_baku" class="form-control"
-                                                            required>
+                                                        <select name="bahan_baku" id="bahan_baku" class="form-control">
                                                             <option value="">Pilih Bahan Baku</option>
                                                             <?php foreach ($all_bahan_baku as $barang): ?>
                                                             <option
@@ -63,7 +62,7 @@
                                                     </div>
                                                     <div class="form-group col-2">
                                                         <input type="number" name="qty" value="" class="form-control"
-                                                            min='1' required>
+                                                            min='1'>
                                                     </div>
                                                     <div class="form-group col-2">
                                                         <input type="text" name="satuan" value="" class="form-control"

@@ -8,6 +8,7 @@ class Produk extends CI_Controller{
 		if($this->session->login['role'] != 'petugas' && $this->session->login['role'] != 'admin') redirect();
 		$this->data['aktif'] = 'produk';
 		$this->load->model('M_produk', 'm_produk');
+		$this->load->model('M_detail_produk', 'm_detail_produk');
 		$this->load->model('M_barang', 'm_barang');
 	}
 
@@ -37,12 +38,23 @@ class Produk extends CI_Controller{
 			redirect('dashboard');
 		}
 
-		$data = [
+		$jumlah_bahan_baku = count($this->input->post('bahan_baku_hidden'));
+
+		$data_produk = [
 			'kode_produk' => $this->input->post('kode_produk'),
 			'nama_produk' => $this->input->post('nama_produk')
 		];
 
-		if($this->m_produk->tambah($data)){
+		$data_detail_produk = [];
+
+		for($i = 0; $i < $jumlah_bahan_baku; $i++){
+			array_push($data_detail_produk, ['kode_produk' => $this->input->post('kode_produk')]);
+			$data_detail_produk[$i]['kode_barang'] = explode(" - ", $this->input->post('bahan_baku_hidden')[$i])[1];
+			$data_detail_produk[$i]['qty'] = $this->input->post('qty_hidden')[$i];
+			$data_detail_produk[$i]['satuan'] = $this->input->post('satuan_hidden')[$i];
+		}
+
+		if($this->m_produk->tambah($data_produk) && $this->m_detail_produk->tambah($data_detail_produk)){
 			$this->session->set_flashdata('success', 'Data Produk <strong>Berhasil</strong> Ditambahkan!');
 			redirect('produk');
 		} else {

@@ -9,7 +9,7 @@ class M_detail_produk extends CI_Model{
 	}
 
 	public function tambah($data){
-		return $this->db->insert($this->_table, $data);
+		return $this->db->insert_batch($this->_table, $data);
 	}
 
 	public function ubah($data, $kode_produk){
