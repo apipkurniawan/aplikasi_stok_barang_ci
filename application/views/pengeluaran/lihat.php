@@ -69,9 +69,9 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $pengeluaran->no_keluar ?></td>
-                                            <td><?= $pengeluaran->kode_barang ?></td>
+                                            <td><?= $pengeluaran->nama_barang ?></td>
                                             <td><?= $pengeluaran->jumlah ?></td>
-                                            <td><?= $pengeluaran->kode_petugas ?></td>
+                                            <td><?= $pengeluaran->nama ?></td>
                                             <td><?= $pengeluaran->tgl_keluar ?> <?= $pengeluaran->jam_keluar ?></td>
                                             <td><?= $pengeluaran->keterangan ?></td>
                                             <td style="text-align: center;">

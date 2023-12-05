@@ -14,7 +14,7 @@ class Pengeluaran extends CI_Controller{
 
 	public function index(){
 		$this->data['title'] = 'Transaksi Pengeluaran';
-		$this->data['all_pengeluaran'] = $this->m_pengeluaran->lihat();
+		$this->data['all_pengeluaran'] = $this->m_pengeluaran->getDataRelasi();
 		$this->data['no'] = 1;
 
 		$this->load->view('pengeluaran/lihat', $this->data);
