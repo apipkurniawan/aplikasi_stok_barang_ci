@@ -78,9 +78,9 @@
                                                 <?php if ($this->session->login['role'] == 'admin'): ?>
                                                 <a href="<?= base_url('penerimaan/detail/' . $penerimaan->no_terima) ?>"
                                                     class="btn btn-success btn-sm mb-1"><i class="fa fa-eye"></i></a>
-                                                <a onclick="return confirm('apakah anda yakin?')"
+                                                <!-- <a onclick="return confirm('apakah anda yakin?')"
                                                     href="<?= base_url('penerimaan/hapus/' . $penerimaan->no_terima) ?>"
-                                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> -->
                                             </td>
                                             <?php endif ?>
                                         </tr>
