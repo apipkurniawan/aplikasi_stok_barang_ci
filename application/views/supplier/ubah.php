@@ -27,20 +27,20 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="card shadow">
                                 <div class="card-header"><strong>Isi Form Dibawah Ini!</strong></div>
                                 <div class="card-body">
                                     <form action="<?= base_url('supplier/proses_ubah/' . $supplier->kode_supplier) ?>"
                                         id="form-tambah" method="POST">
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-2">
                                                 <label for="kode"><strong>Kode</strong></label>
                                                 <input type="text" name="kode" placeholder="Masukkan Kode supplier"
                                                     autocomplete="off" class="form-control" required
                                                     value="<?= $supplier->kode_supplier ?>" maxlength="8" readonly>
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-10">
                                                 <label for="nama"><strong>Nama</strong></label>
                                                 <input type="text" name="nama" placeholder="Masukkan Nama supplier"
                                                     autocomplete="off" class="form-control" required
@@ -48,13 +48,13 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-8">
+                                            <div class="form-group col-md-6">
                                                 <label for="email"><strong>Email</strong></label>
                                                 <input type="email" name="email" placeholder="Masukkan Email"
                                                     autocomplete="off" class="form-control" required
                                                     value="<?= $supplier->email ?>">
                                             </div>
-                                            <div class="form-group col-md-4">
+                                            <div class="form-group col-md-6">
                                                 <label for="telepon"><strong>Telepon</strong></label>
                                                 <input type="number" name="telepon" placeholder="Masukkan No Telepon"
                                                     autocomplete="off" class="form-control" required

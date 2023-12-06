@@ -36,7 +36,7 @@ class Supplier extends CI_Controller{
 		}
 
 		$data = [
-			'kode' => $this->input->post('kode'),
+			'kode_supplier' => $this->input->post('kode'),
 			'nama' => $this->input->post('nama'),
 			'email' => $this->input->post('email'),
 			'telepon' => $this->input->post('telepon'),
@@ -71,7 +71,7 @@ class Supplier extends CI_Controller{
 		}
 
 		$data = [
-			'kode' => $this->input->post('kode'),
+			'kode_supplier' => $this->input->post('kode'),
 			'nama' => $this->input->post('nama'),
 			'email' => $this->input->post('email'),
 			'telepon' => $this->input->post('telepon'),

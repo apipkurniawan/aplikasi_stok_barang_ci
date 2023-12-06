@@ -75,10 +75,12 @@
                                             <?php if ($this->session->login['role'] == 'admin'): ?>
                                             <td style="text-align: center;">
                                                 <a href="<?= base_url('supplier/ubah/' . $supplier->kode_supplier) ?>"
-                                                    class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                                                    class="btn btn-success btn-sm mb-1" style="width: 30px;"><i
+                                                        class="fa fa-edit"></i></a>
                                                 <a onclick="return confirm('apakah anda yakin?')"
                                                     href="<?= base_url('supplier/hapus/' . $supplier->kode_supplier) ?>"
-                                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                    class="btn btn-danger btn-sm" style="width: 30px;"><i
+                                                        class="fa fa-trash"></i></a>
                                             </td>
                                             <?php endif ?>
                                         </tr>
