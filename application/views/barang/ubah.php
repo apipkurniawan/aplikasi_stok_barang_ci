@@ -48,7 +48,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="stok"><strong>Stok</strong></label>
-                                                <input type="number" name="stok" placeholder="Masukkan Stok"
+                                                <input type="number" name="stok" placeholder="Masukkan Stok" readonly
                                                     autocomplete="off" class="form-control" required
                                                     value="<?= $barang->stok ?>">
                                             </div>
