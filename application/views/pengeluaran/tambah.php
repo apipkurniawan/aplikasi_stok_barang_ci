@@ -81,11 +81,11 @@
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group col-1">
+                                                    <!-- <div class="form-group col-1">
                                                         <label>Stok</label>
-                                                        <input type="text" name="stok" value="" readonly
+                                                        <input type="hidden" name="stok" value="" readonly
                                                             class="form-control">
-                                                    </div>
+                                                    </div> -->
                                                     <div class="form-group col-1">
                                                         <label>Jumlah</label>
                                                         <input type="number" name="jumlah" value="" class="form-control"
@@ -106,7 +106,9 @@
                                                         <button type="button" class="btn btn-primary btn-block"
                                                             id="tambah"><i class="fa fa-plus"></i></button>
                                                     </div>
-                                                    <input type="hidden" name="satuan" value="">
+                                                    <input type="hidden" name="category" value="">
+                                                    <input type="hidden" name="stok" value="" readonly
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -173,8 +175,10 @@
             else {
                 const satuan = getDataBarang(pKodeBrg).satuan
                 const stok = getDataBarang(pKodeBrg).stok
+                const category = getDataBarang(pKodeBrg).category
                 $('input[name="satuan"]').val(satuan)
                 $('input[name="stok"]').val(stok)
+                $('input[name="category"]').val(category)
             }
         })
 
@@ -184,6 +188,7 @@
             const ket = $('input[name="keterangan"]').val();
             const satuan = $('input[name="satuan"]').val();
             const stok = $('input[name="stok"]').val();
+            const category = $('input[name="category"]').val();
             if (!jml || !brg) {
                 alert('Isi data terlebih dahulu!')
                 return
@@ -197,10 +202,10 @@
                 keterangan: ket,
             }
 
-            if (parseInt(data_keranjang.jumlah) > parseInt(stok)) {
-                alert('Jumlah pengeluaran melebihi stok!')
-            } else if (parseInt(stok) < 0) {
-                alert('stok tidak tersedia! stok tersedia : ' + parseInt(stok))
+            if (category == 'barang' && parseInt(data_keranjang.jumlah) > parseInt(stok)) {
+                alert('Jumlah pengeluaran melebihi stok! stok tersedia : ' + parseInt(stok))
+            } else if (category == 'barang' && parseInt(stok) <= 0) {
+                alert('stok tidak tersedia!')
             } else {
                 $.ajax({
                     url: url_keranjang_barang,
@@ -232,6 +237,7 @@
             $('input[name="jumlah"]').val('')
             $('input[name="satuan"]').val('')
             $('input[name="keterangan"]').val('')
+            $('input[name="category"]').val('')
         }
 
         function getDataBarang(kodeBrg) {

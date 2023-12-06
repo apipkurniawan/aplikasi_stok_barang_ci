@@ -8,11 +8,11 @@
         <input type="hidden" name="jumlah_hidden[]" value="<?= $this->input->post('jumlah') ?>">
     </td>
     <td class="satuan">
-        <?= strtoupper($this->input->post('satuan')) ?>
+        <?= strtolower($this->input->post('satuan')) ?>
         <input type="hidden" name="satuan_hidden[]" value="<?= $this->input->post('satuan') ?>">
     </td>
     <td class="keterangan">
-        <?= strtoupper($this->input->post('keterangan')) ?>
+        <?= strtolower($this->input->post('keterangan')) ?>
         <input type="hidden" name="keterangan_hidden[]" value="<?= $this->input->post('keterangan') ?>">
     </td>
     <td class="aksi">
