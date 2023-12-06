@@ -8,7 +8,7 @@
         <input type="hidden" name="qty_hidden[]" value="<?= $this->input->post('qty') ?>">
     </td>
     <td class="satuan">
-        <?= strtoupper($this->input->post('satuan')) ?>
+        <?= strtolower($this->input->post('satuan')) ?>
         <input type="hidden" name="satuan_hidden[]" value="<?= $this->input->post('satuan') ?>">
     </td>
     <td class="aksi">

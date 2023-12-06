@@ -45,6 +45,12 @@
                                                 <input type="text" name="nama_produk" placeholder="Masukkan Nama Produk"
                                                     autocomplete="off" class="form-control" required>
                                             </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="satuan_produk"><strong>Satuan</strong></label>
+                                                <input type="text" name="satuan_produk"
+                                                    placeholder="Masukkan Satuan produk" autocomplete="off"
+                                                    class="form-control" required>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-8">

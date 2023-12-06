@@ -10,7 +10,7 @@
 <body>
     <div class="row" style="margin-bottom: 40px;">
         <div class="col text-center">
-            <h3 class="h2 text-dark"><?= $title ?></h3>
+            <h2 class="h2 text-dark"><?= $title ?></h2>
         </div>
         <hr>
     </div>

@@ -53,6 +53,7 @@
                                             <td>No</td>
                                             <td>Kode Produk</td>
                                             <td>Nama Produk</td>
+                                            <td>Satuan</td>
                                             <td>Aksi</td>
                                         </tr>
                                     </thead>
@@ -62,6 +63,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $produk->kode_produk ?></td>
                                             <td><?= $produk->nama_produk ?></td>
+                                            <td><?= $produk->satuan ?></td>
                                             <td style="text-align: center;">
                                                 <a onclick="return confirm('apakah anda yakin?')"
                                                     href="<?= base_url('produk/hapus/' . $produk->kode_produk) ?>"
