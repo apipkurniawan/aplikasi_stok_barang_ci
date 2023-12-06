@@ -24,7 +24,7 @@ class Penerimaan extends CI_Controller{
 	public function tambah(){
 		$this->data['title'] = 'Tambah Transaksi';
 		$this->data['all_barang'] = $this->m_barang->lihat();
-		$this->data['all_supplier'] = $this->m_supplier->lihat_spl();
+		$this->data['all_supplier'] = $this->m_supplier->lihat();
 
 		$this->load->view('penerimaan/tambah', $this->data);
 	}
