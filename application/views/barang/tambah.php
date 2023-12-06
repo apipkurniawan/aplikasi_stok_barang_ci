@@ -47,8 +47,8 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="stok"><strong>Stok</strong></label>
-                                                <input type="number" name="stok" placeholder="Masukkan Stok"
-                                                    autocomplete="off" class="form-control" required>
+                                                <input type="number" name="stok" placeholder="Masukkan Stok" readonly
+                                                    value="0" autocomplete="off" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="form-row">
