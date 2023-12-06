@@ -86,8 +86,7 @@ class Pengeluaran extends CI_Controller{
 
 	public function export(){
 		$dompdf = new Dompdf();
-		// $this->data['perusahaan'] = $this->m_usaha->lihat();
-		$this->data['all_pengeluaran'] = $this->m_pengeluaran->lihat();
+		$this->data['all_pengeluaran'] = $this->m_pengeluaran->getDataRelasi();
 		$this->data['title'] = 'Laporan Data Pengeluaran';
 		$this->data['no'] = 1;
 

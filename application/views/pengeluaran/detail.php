@@ -86,7 +86,7 @@
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $detail_keluar->kode_barang ?></td>
                                                 <td><?= $detail_keluar->jumlah ?>
-                                                    <?= strtoupper($detail_keluar->satuan) ?></td>
+                                                    <?= strtolower($detail_keluar->satuan) ?></td>
                                                 <td><?= $detail_keluar->keterangan ?></td>
                                             </tr>
                                             <?php endforeach ?>
