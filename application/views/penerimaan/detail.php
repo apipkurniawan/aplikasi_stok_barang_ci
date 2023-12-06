@@ -91,7 +91,7 @@
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $detail_terima->kode_barang ?></td>
                                                 <td><?= $detail_terima->jumlah ?>
-                                                    <?= strtoupper($detail_terima->satuan) ?></td>
+                                                    <?= strtolower($detail_terima->satuan) ?></td>
                                                 <td><?= $detail_terima->keterangan ?></td>
                                             </tr>
                                             <?php endforeach ?>
