@@ -22,7 +22,7 @@ class Pengeluaran extends CI_Controller{
 
 	public function tambah(){
 		$this->data['title'] = 'Tambah Transaksi';
-		$this->data['all_barang'] = $this->m_barang->lihat_stok();
+		$this->data['all_barang'] = $this->m_pengeluaran->getDataBarangProduk();
 
 		$this->load->view('pengeluaran/tambah', $this->data);
 	}

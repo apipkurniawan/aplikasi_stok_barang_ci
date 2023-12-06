@@ -17,6 +17,12 @@ class M_pengeluaran extends CI_Model {
 		return $query->result();
 	}
 
+	public function getDataBarangProduk() {
+		$sql="SELECT b.kode_barang as 'kode_barang', b.nama_barang as 'nama_barang', b.satuan as 'satuan', b.stok as 'stok', 'barang' as 'category' FROM `barang` b WHERE b.bahan_baku = 'N' UNION SELECT p.kode_produk as 'kode_barang', p.nama_produk as 'nama_barang', p.satuan as 'satuan', 0 as 'stok', 'produk' as 'category' FROM `produk` p";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
 	public function jumlah(){
 		$query = $this->db->get($this->_table);
 		return $query->num_rows();
