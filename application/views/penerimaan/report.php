@@ -21,10 +21,10 @@
                 <tr>
                     <th style="font-weight: 600; border: 1px solid black; padding: 8px;">No</th>
                     <th style="font-weight: 600; border: 1px solid black; padding: 8px;">No. Terima</th>
-                    <th style="font-weight: 600; border: 1px solid black; padding: 8px;">Kode Barang</th>
+                    <th style="font-weight: 600; border: 1px solid black; padding: 8px;">Nama Barang</th>
                     <th style="font-weight: 600; border: 1px solid black; padding: 8px;">Jumlah</th>
-                    <th style="font-weight: 600; border: 1px solid black; padding: 8px;">Kode Petugas</th>
-                    <th style="font-weight: 600; border: 1px solid black; padding: 8px;">Kode Supplier</th>
+                    <th style="font-weight: 600; border: 1px solid black; padding: 8px;">Nama Petugas</th>
+                    <th style="font-weight: 600; border: 1px solid black; padding: 8px;">Nama Supplier</th>
                     <th style="font-weight: 600; border: 1px solid black; padding: 8px;">Tanggal Terima</th>
                 </tr>
             </thead>
@@ -34,10 +34,10 @@
                     <td style="border: 1px solid black; padding: 8px; text-align:center"><?= $no++ ?></td>
                     <td style="border: 1px solid black; padding: 8px;"><?= $penerimaan->no_terima ?>
                     </td>
-                    <td style="border: 1px solid black; padding: 8px;"><?= $penerimaan->kode_barang ?></td>
+                    <td style="border: 1px solid black; padding: 8px;"><?= $penerimaan->nama_barang ?></td>
                     <td style="border: 1px solid black; padding: 8px; text-align:center"><?= $penerimaan->jumlah ?></td>
-                    <td style="border: 1px solid black; padding: 8px;"><?= $penerimaan->kode_petugas ?></td>
-                    <td style="border: 1px solid black; padding: 8px;"><?= $penerimaan->kode_supplier ?></td>
+                    <td style="border: 1px solid black; padding: 8px;"><?= $penerimaan->user ?></td>
+                    <td style="border: 1px solid black; padding: 8px;"><?= $penerimaan->supplier ?></td>
                     <td style="border: 1px solid black; padding: 8px;"><?= $penerimaan->tgl_terima ?>
                         <?= $penerimaan->jam_terima ?></td>
                 </tr>
