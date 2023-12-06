@@ -129,4 +129,12 @@ class Produk extends CI_Controller{
 		$this->load->view('produk/keranjang');
 	}
 	
+	public function detail($kode_produk){
+		$this->data['title'] = 'Detail Produk';
+		$this->data['produk'] = $this->m_produk->lihat_id($kode_produk);
+		$this->data['all_detail_produk'] = $this->m_detail_produk->getDataRelasi($kode_produk);
+		$this->data['no'] = 1;
+
+		$this->load->view('produk/detail', $this->data);
+	}
 }

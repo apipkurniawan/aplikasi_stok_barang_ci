@@ -27,12 +27,18 @@ class M_barang extends CI_Model{
 		$query = $this->db->get_where($this->_table, ['kode_barang' => $kode_barang]);
 		return $query->row();
 	}
-
+	
 	public function lihat_nama_barang($nama_barang){
 		$query = $this->db->select('*');
 		$query = $this->db->where(['nama_barang' => $nama_barang]);
 		$query = $this->db->get($this->_table);
 		return $query->row();
+	}
+	
+	public function get_stok_barang($kode_barang){
+		$sql = "SELECT * FROM `barang` WHERE kode_barang = ?";
+		$query = $this->db->query($sql, array($kode_barang));
+		return $query->result();
 	}
 
 	public function tambah($data){

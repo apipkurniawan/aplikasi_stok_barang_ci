@@ -21,10 +21,8 @@
                             <h1 class="h3 m-0 text-gray-800"><?= $title ?></h1>
                         </div>
                         <div class="float-right">
-                            <a href="<?= base_url('produk/export') ?>" target="_blank" class="btn btn-danger btn-sm"><i
-                                    class="fa fa-file-pdf"></i>&nbsp;&nbsp;Export</a>
-                            <a href="<?= base_url('produk/tambah') ?>" class="btn btn-primary btn-sm"><i
-                                    class="fa fa-plus"></i>&nbsp;&nbsp;Tambah</a>
+                            <a href="<?= base_url('produk') ?>" class="btn btn-secondary btn-sm"><i
+                                    class="fa fa-reply"></i>&nbsp;&nbsp;Kembali</a>
                         </div>
                     </div>
                     <hr>
@@ -44,37 +42,53 @@
                     </div>
                     <?php endif ?>
                     <div class="card shadow">
-                        <div class="card-header"><strong>Daftar Produk</strong></div>
+                        <div class="card-header"><strong><?= $title ?> - <?= $produk->kode_produk ?></strong></div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-borderless">
                                         <tr>
-                                            <td>No</td>
-                                            <td>Kode Produk</td>
-                                            <td>Nama Produk</td>
-                                            <td>Satuan</td>
-                                            <td>Aksi</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($all_produk as $produk): ?>
-                                        <tr>
-                                            <td><?= $no++ ?></td>
+                                            <td><strong>Kode Produk</strong></td>
+                                            <td>:</td>
                                             <td><?= $produk->kode_produk ?></td>
-                                            <td><?= $produk->nama_produk ?></td>
-                                            <td><?= $produk->satuan ?></td>
-                                            <td style="text-align: center;">
-                                                <a href="<?= base_url('produk/detail/' . $produk->kode_produk) ?>"
-                                                    class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
-                                                <a onclick="return confirm('apakah anda yakin?')"
-                                                    href="<?= base_url('produk/hapus/' . $produk->kode_produk) ?>"
-                                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                            </td>
                                         </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
+                                        <tr>
+                                            <td><strong>Nama Produk</strong></td>
+                                            <td>:</td>
+                                            <td><?= $produk->nama_produk ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Satuan</strong></td>
+                                            <td>:</td>
+                                            <td><?= $produk->satuan ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td><strong>No</strong></td>
+                                                <td><strong>Nama Barang</strong></td>
+                                                <td><strong>Jumlah</strong></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($all_detail_produk as $detail_produk): ?>
+                                            <tr>
+                                                <td><?= $no++ ?></td>
+                                                <td><?= $detail_produk->kode_barang ?> -
+                                                    <?= $detail_produk->nama_barang ?></td>
+                                                <td><?= $detail_produk->qty ?>
+                                                    <?= strtolower($detail_produk->satuan) ?></td>
+                                            </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

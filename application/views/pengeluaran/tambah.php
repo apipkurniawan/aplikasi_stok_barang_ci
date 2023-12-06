@@ -121,6 +121,7 @@
                                                         <td width="35%">Nama Barang</td>
                                                         <td width="15%">Jumlah</td>
                                                         <td width="10%">Satuan</td>
+                                                        <td width="15%">Kategori</td>
                                                         <td width="15%">Keterangan</td>
                                                         <td width="15%">Aksi</td>
                                                     </tr>
@@ -199,6 +200,7 @@
                 nama_barang: brg,
                 jumlah: jml,
                 satuan: satuan,
+                category: category,
                 keterangan: ket,
             }
 

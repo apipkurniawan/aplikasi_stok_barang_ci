@@ -10,6 +10,7 @@ class Pengeluaran extends CI_Controller{
 		$this->load->model('M_barang', 'm_barang');
 		$this->load->model('M_pengeluaran', 'm_pengeluaran');
 		$this->load->model('M_detail_keluar', 'm_detail_keluar');
+		$this->load->model('M_detail_produk', 'm_detail_produk');
 	}
 
 	public function index(){
@@ -49,7 +50,31 @@ class Pengeluaran extends CI_Controller{
 
 		if ($this->m_pengeluaran->tambah($data_keluar) && $this->m_detail_keluar->tambah($data_detail_keluar)) {
 			for ($i=0; $i < $jumlah_barang_keluar ; $i++) { 
-				$this->m_barang->min_stok($data_detail_keluar[$i]['jumlah'], $data_detail_keluar[$i]['kode_barang']) or die('gagal min stok');
+				// cek mana yg produk dan barang		
+				if ($this->input->post('category_hidden')[$i] === 'barang') {
+					// klo kategori barang : 
+					// - update stok ke tabel barang
+					$this->m_barang->min_stok($data_detail_keluar[$i]['jumlah'], $data_detail_keluar[$i]['kode_barang']) or die('gagal min stok');
+				} else {
+					// // klo kategori produk :
+					// // - cek ada berapa bahan baku -> m_detail_produk(kode_produk)
+					// $kode_produk = $data_detail_keluar[$i]['kode_barang'];
+					// $detail_bahan_baku = $this->m_detail_produk->get_kode_bahan_baku($kode_produk);
+					// for ($i=0; $i < count($detail_bahan_baku); $i++) { 
+					// 	// - cek stok bahan baku tersedia -> m_barang(kode_barang)
+					// 	$stok_bahan_baku_tersedia = $this->m_barang->get_stok_barang($detail_bahan_baku[$i]);
+					// 	// - cek stok bahan baku terjual -> m_detail_produk(kode_produk, kode_barang)
+					// 	$qty = $this->m_detail_produk->get_formula_bahan_baku($kode_produk, $detail_bahan_baku[$i]);
+						
+					// 	$stok_bahan_baku_terjual = intval($data_detail_keluar[$i]['jumlah']) * intval($qty);
+
+					// 	$total = intval($stok_bahan_baku_tersedia[0]->stok) - intval($stok_bahan_baku_terjual);
+
+					// 	// - update stok sesuai formula detail produk dan jumlahnya
+					// 	$this->m_barang->min_stok($total, $detail_bahan_baku[$i]) or die('gagal min stok');
+					// }
+				}
+
 			}
 			$this->session->set_flashdata('success', 'Invoice <strong>Pengeluaran</strong> Berhasil Dibuat!');
 			redirect('pengeluaran');

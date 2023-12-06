@@ -11,6 +11,10 @@
         <?= strtolower($this->input->post('satuan')) ?>
         <input type="hidden" name="satuan_hidden[]" value="<?= $this->input->post('satuan') ?>">
     </td>
+    <td class="category">
+        <?= strtolower($this->input->post('category')) ?>
+        <input type="hidden" name="category_hidden[]" value="<?= $this->input->post('category') ?>">
+    </td>
     <td class="keterangan">
         <?= strtolower($this->input->post('keterangan')) ?>
         <input type="hidden" name="keterangan_hidden[]" value="<?= $this->input->post('keterangan') ?>">
