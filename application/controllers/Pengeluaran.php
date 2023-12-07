@@ -44,7 +44,6 @@ class Pengeluaran extends CI_Controller{
 			array_push($data_detail_keluar, ['no_keluar' => $this->input->post('no_keluar')]);
 			$data_detail_keluar[$i]['kode_barang'] = explode(" - ", $this->input->post('nama_barang_hidden')[$i])[1];
 			$data_detail_keluar[$i]['jumlah'] = $this->input->post('jumlah_hidden')[$i];
-			$data_detail_keluar[$i]['satuan'] = $this->input->post('satuan_hidden')[$i];
 			$data_detail_keluar[$i]['keterangan'] = $this->input->post('keterangan_hidden')[$i];
 		}
 

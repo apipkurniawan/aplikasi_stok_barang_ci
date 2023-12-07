@@ -23,8 +23,10 @@
                         <div class="float-right">
                             <a href="<?= base_url('produk/export') ?>" target="_blank" class="btn btn-danger btn-sm"><i
                                     class="fa fa-file-pdf"></i>&nbsp;&nbsp;Export</a>
+                            <?php if ($this->session->login['role'] == 'admin') : ?>
                             <a href="<?= base_url('produk/tambah') ?>" class="btn btn-primary btn-sm"><i
                                     class="fa fa-plus"></i>&nbsp;&nbsp;Tambah</a>
+                            <?php endif ?>
                         </div>
                     </div>
                     <hr>
@@ -54,7 +56,9 @@
                                             <td>Kode Produk</td>
                                             <td>Nama Produk</td>
                                             <td>Satuan</td>
+                                            <?php if ($this->session->login['role'] == 'admin') : ?>
                                             <td>Aksi</td>
+                                            <?php endif ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,6 +68,7 @@
                                             <td><?= $produk->kode_produk ?></td>
                                             <td><?= $produk->nama_produk ?></td>
                                             <td><?= $produk->satuan ?></td>
+                                            <?php if ($this->session->login['role'] == 'admin') : ?>
                                             <td style="text-align: center;">
                                                 <a href="<?= base_url('produk/detail/' . $produk->kode_produk) ?>"
                                                     class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
@@ -71,6 +76,7 @@
                                                     href="<?= base_url('produk/hapus/' . $produk->kode_produk) ?>"
                                                     class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                             </td>
+                                            <?php endif ?>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>

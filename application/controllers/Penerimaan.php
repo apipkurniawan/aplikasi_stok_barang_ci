@@ -46,7 +46,6 @@ class Penerimaan extends CI_Controller{
 			array_push($data_detail_terima, ['no_terima' => $this->input->post('no_terima')]);
 			$data_detail_terima[$i]['kode_barang'] = explode(' - ', $this->input->post('nama_barang_hidden')[$i])[1];
 			$data_detail_terima[$i]['jumlah'] = $this->input->post('jumlah_hidden')[$i];
-			$data_detail_terima[$i]['satuan'] = $this->input->post('satuan_hidden')[$i];
 			$data_detail_terima[$i]['keterangan'] = $this->input->post('keterangan_hidden')[$i];
 		}
 

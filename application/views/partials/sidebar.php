@@ -54,8 +54,8 @@
             <span>Barang Keluar</span></a>
     </li>
 
-    <hr class="sidebar-divider">
     <?php if ($this->session->login['role'] == 'admin'): ?>
+    <hr class="sidebar-divider">
     <!-- Heading -->
     <div class="sidebar-heading">
         Pengaturan

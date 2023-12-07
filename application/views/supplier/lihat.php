@@ -21,9 +21,9 @@
                             <h1 class="h3 m-0 text-gray-800"><?= $title ?></h1>
                         </div>
                         <div class="float-right">
-                            <?php if ($this->session->login['role'] == 'admin'): ?>
                             <a href="<?= base_url('supplier/export') ?>" target="_blank"
                                 class="btn btn-danger btn-sm"><i class="fa fa-file-pdf"></i>&nbsp;&nbsp;Export</a>
+                            <?php if ($this->session->login['role'] == 'admin'): ?>
                             <a href="<?= base_url('supplier/tambah') ?>" class="btn btn-primary btn-sm"><i
                                     class="fa fa-plus"></i>&nbsp;&nbsp;Tambah</a>
                             <?php endif ?>

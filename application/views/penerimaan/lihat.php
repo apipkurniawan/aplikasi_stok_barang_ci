@@ -21,9 +21,9 @@
                             <h1 class="h3 m-0 text-gray-800"><?= $title ?></h1>
                         </div>
                         <div class="float-right">
-                            <?php if ($this->session->login['role'] == 'admin'): ?>
                             <a href="<?= base_url('penerimaan/export') ?>" target="_blank"
                                 class="btn btn-danger btn-sm"><i class="fa fa-file-pdf"></i>&nbsp;&nbsp;Export</a>
+                            <?php if ($this->session->login['role'] == 'admin'): ?>
                             <a href="<?= base_url('penerimaan/tambah') ?>" class="btn btn-primary btn-sm"><i
                                     class="fa fa-plus"></i>&nbsp;&nbsp;Tambah</a>
                             <?php endif ?>
@@ -74,8 +74,8 @@
                                             <td><?= $penerimaan->user ?></td>
                                             <td><?= $penerimaan->supplier ?></td>
                                             <td><?= $penerimaan->tgl_terima ?> <?= $penerimaan->jam_terima ?></td>
+                                            <?php if ($this->session->login['role'] == 'admin'): ?>
                                             <td style="text-align: center;">
-                                                <?php if ($this->session->login['role'] == 'admin'): ?>
                                                 <a href="<?= base_url('penerimaan/detail/' . $penerimaan->no_terima) ?>"
                                                     class="btn btn-success btn-sm mb-1"><i class="fa fa-eye"></i></a>
                                                 <!-- <a onclick="return confirm('apakah anda yakin?')"

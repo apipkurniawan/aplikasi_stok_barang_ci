@@ -21,12 +21,10 @@
                             <h1 class="h3 m-0 text-gray-800"><?= $title ?></h1>
                         </div>
                         <div class="float-right">
-                            <?php if ($this->session->login['role'] == 'admin'): ?>
                             <a href="<?= base_url('pengeluaran/export') ?>" target="_blank"
                                 class="btn btn-danger btn-sm"><i class="fa fa-file-pdf"></i>&nbsp;&nbsp;Export</a>
                             <a href="<?= base_url('pengeluaran/tambah') ?>" class="btn btn-primary btn-sm"><i
                                     class="fa fa-plus"></i>&nbsp;&nbsp;Tambah</a>
-                            <?php endif ?>
                         </div>
                     </div>
                     <hr>
@@ -59,9 +57,7 @@
                                             <td>Nama Petugas</td>
                                             <td>Tanggal Keluar</td>
                                             <td>Keterangan</td>
-                                            <?php if ($this->session->login['role'] == 'admin'): ?>
                                             <td>Aksi</td>
-                                            <?php endif ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -75,14 +71,12 @@
                                             <td><?= $pengeluaran->tgl_keluar ?> <?= $pengeluaran->jam_keluar ?></td>
                                             <td><?= $pengeluaran->keterangan ?></td>
                                             <td style="text-align: center;">
-                                                <?php if ($this->session->login['role'] == 'admin'): ?>
                                                 <a href="<?= base_url('pengeluaran/detail/' . $pengeluaran->no_keluar) ?>"
                                                     class="btn btn-success btn-sm mb-1"><i class="fa fa-eye"></i></a>
                                                 <!-- <a onclick="return confirm('apakah anda yakin?')"
                                                     href="<?= base_url('pengeluaran/hapus/' . $pengeluaran->no_keluar) ?>"
                                                     class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> -->
                                             </td>
-                                            <?php endif ?>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>
