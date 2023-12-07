@@ -39,7 +39,12 @@ class M_pengeluaran extends CI_Model {
 	}
 
 	public function lihat_no_keluar($no_keluar){
-		return $this->db->get_where($this->_table, ['no_keluar' => $no_keluar])->row();
+		$this->db->select('pengeluaran.*, pengguna.nama'); 		
+		$this->db->from('pengeluaran'); 		
+		$this->db->join('pengguna', 'pengguna.kode = pengeluaran.kode_petugas'); 		
+		$this->db->where('no_keluar', $no_keluar);
+		$query = $this->db->get(); 		
+		return $query->row(); 
 	}
 
 	public function tambah($data){

@@ -58,7 +58,7 @@
                                         <tr>
                                             <td><strong>Nama Petugas</strong></td>
                                             <td>:</td>
-                                            <td><?= $pengeluaran->kode_petugas ?></td>
+                                            <td><?= $pengeluaran->kode_petugas ?> - <?= $pengeluaran->nama ?></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Waktu Keluar</strong></td>
