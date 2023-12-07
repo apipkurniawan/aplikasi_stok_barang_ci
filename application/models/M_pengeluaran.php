@@ -27,8 +27,28 @@ class M_pengeluaran extends CI_Model {
 		return $query->result();
 	}
 
-	public function getDataBarangProduk() {
-		$sql="SELECT b.kode_barang as 'kode_barang', b.nama_barang as 'nama_barang', b.satuan as 'satuan', b.stok as 'stok', 'barang' as 'category' FROM `barang` b WHERE b.bahan_baku = 'N' UNION SELECT p.kode_produk as 'kode_barang', p.nama_produk as 'nama_barang', p.satuan as 'satuan', 0 as 'stok', 'produk' as 'category' FROM `produk` p";
+	public function getDataProdukReady() { 
+		$sql="SELECT 
+			p.kode_produk as 'kode_produk', 
+			p.nama_produk as 'nama_produk', 
+			p.satuan as 'satuan', 
+			0 as 'stok', 
+			'produk' as 'category', 
+			ba.stok, 
+			ba.kode_barang as 'kode_barang', 
+			ba.nama_barang
+			FROM `produk` p
+			INNER JOIN `detail_produk` dp ON dp.kode_produk = p.kode_produk
+			LEFT JOIN `barang` ba ON dp.kode_barang = ba.kode_barang
+			GROUP BY p.kode_produk, ba.kode_barang";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	public function getDataBarangReady() {
+		$sql="SELECT b.kode_barang as 'kode_barang', b.nama_barang as 'nama_barang', b.satuan as 'satuan', b.stok as 'stok', 'barang' as 'category' 
+		FROM `barang` b 
+		WHERE b.bahan_baku = 'N' AND b.stok > 0";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

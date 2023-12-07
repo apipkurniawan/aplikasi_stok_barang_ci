@@ -64,7 +64,7 @@
                                                     readonly class="form-control">
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row mt-2">
                                             <div class="col-md-3">
                                                 <h5>Data Supplier</h5>
                                                 <hr>
@@ -130,7 +130,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="keranjang">
+                                        <div class="keranjang mt-2">
                                             <h5>Detail Penerimaan</h5>
                                             <hr>
                                             <table class="table table-bordered" id="keranjang">

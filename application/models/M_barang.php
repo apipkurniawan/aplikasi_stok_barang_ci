@@ -44,12 +44,6 @@ class M_barang extends CI_Model{
 		$query = $this->db->get($this->_table);
 		return $query->row();
 	}
-	
-	public function get_stok_barang($kode_barang){
-		$sql = "SELECT * FROM `barang` WHERE kode_barang = ?";
-		$query = $this->db->query($sql, array($kode_barang));
-		return $query->row();
-	}
 
 	public function tambah($data){
 		return $this->db->insert($this->_table, $data);

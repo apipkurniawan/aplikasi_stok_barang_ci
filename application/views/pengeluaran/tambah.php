@@ -64,7 +64,7 @@
                                                     readonly class="form-control">
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row mt-2">
                                             <div class="col-md-12">
                                                 <h5>Data Barang</h5>
                                                 <hr>
@@ -74,18 +74,8 @@
                                                         <select name="nama_barang" id="nama_barang"
                                                             class="form-control">
                                                             <option value="">Pilih Barang/Produk</option>
-                                                            <?php foreach ($all_barang as $barang): ?>
-                                                            <option
-                                                                value="<?= $barang->nama_barang ?> - <?= $barang->kode_barang ?>">
-                                                                <?= $barang->nama_barang ?></option>
-                                                            <?php endforeach ?>
                                                         </select>
                                                     </div>
-                                                    <!-- <div class="form-group col-1">
-                                                        <label>Stok</label>
-                                                        <input type="hidden" name="stok" value="" readonly
-                                                            class="form-control">
-                                                    </div> -->
                                                     <div class="form-group col-1">
                                                         <label>Jumlah</label>
                                                         <input type="number" name="jumlah" value="" class="form-control"
@@ -112,7 +102,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="keranjang">
+                                        <div class="keranjang mt-2">
                                             <h5>Detail Pengeluaran</h5>
                                             <hr>
                                             <table class="table table-bordered" id="keranjang">
@@ -154,6 +144,47 @@
     <script>
     $(document).ready(function() {
         const allBarang = $.parseJSON('<?= json_encode($all_barang) ?>');
+        const allProdukGrouped = $.parseJSON('<?= json_encode($all_produk_grouped) ?>');
+
+        let produkObjReady = {};
+        let allProdukArrReady = [];
+        for (let key in allProdukGrouped) {
+            const propertyNameToCheck = 'stok';
+            const result = $.grep(allProdukGrouped[key], function(obj) {
+                return obj[propertyNameToCheck] == 0;
+            });
+
+            if (result.length > 0) {
+                // jika ada stok yg kosong
+            } else {
+                // jika tidak ada stok yg kosong
+                produkObjReady = {
+                    kode_barang: key,
+                    nama_barang: allProdukGrouped[key][0].nama_produk,
+                    satuan: allProdukGrouped[key][0].satuan,
+                    stok: '-',
+                    category: allProdukGrouped[key][0].category
+                }
+                allProdukArrReady.push(produkObjReady)
+            }
+        }
+        // Merge the arrays using $.merge()
+        const mergedArray = $.merge(allBarang, allProdukArrReady);
+
+        // Display the merged array
+        // console.log('all_barang_produk_ready', mergedArray);
+        $('#nama_barang').empty();
+        $('#nama_barang').append($('<option>', {
+            value: "",
+            text: "Pilih Barang/Produk"
+        }));
+        $.each(mergedArray, function(index, item) {
+            $('#nama_barang').append($('<option>', {
+                value: item.nama_barang + ' - ' + item.kode_barang,
+                text: item.nama_barang
+            }));
+        });
+
         $('tfoot').hide()
 
         $(document).keypress(function(event) {
@@ -243,7 +274,7 @@
         }
 
         function getDataBarang(kodeBrg) {
-            return $.grep(allBarang, function(obj) {
+            return $.grep(mergedArray, function(obj) {
                 return obj.kode_barang == kodeBrg
             })[0]
         }

@@ -23,7 +23,21 @@ class Pengeluaran extends CI_Controller{
 
 	public function tambah(){
 		$this->data['title'] = 'Tambah Transaksi';
-		$this->data['all_barang'] = $this->m_pengeluaran->getDataBarangProduk();
+		$this->data['all_barang'] = $this->m_pengeluaran->getDataBarangReady();
+		$this->data['all_produk'] = $this->m_pengeluaran->getDataProdukReady();
+
+		// grouping produk
+		$groupedProducts = array();
+		foreach ($this->data['all_produk'] as $produk) {
+			$category = $produk->kode_produk;
+			
+			if (!isset($groupedProducts[$category])) {
+				$groupedProducts[$category] = array();
+			}
+
+			$groupedProducts[$category][] = $produk;
+		}
+		$this->data['all_produk_grouped'] = $groupedProducts;
 
 		$this->load->view('pengeluaran/tambah', $this->data);
 	}
@@ -61,8 +75,6 @@ class Pengeluaran extends CI_Controller{
 					$kode_produk = $data_detail_keluar[$i]['kode_barang'];
 					$detail_bahan_baku = $this->m_detail_produk->lihat_id($kode_produk);
 					foreach ($detail_bahan_baku as $row) {						
-						// - cek stok bahan baku tersedia -> m_barang(kode_barang)
-						$stok_bahan_baku_tersedia = $this->m_barang->get_stok_barang($row->kode_barang);
 						// - cek stok bahan baku terjual -> m_detail_produk(kode_produk, kode_barang)
 						$qty = $this->m_detail_produk->get_formula_bahan_baku($kode_produk, $row->kode_barang);
 						
