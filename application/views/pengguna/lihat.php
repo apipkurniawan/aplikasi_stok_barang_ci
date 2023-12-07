@@ -69,12 +69,10 @@
                                             <td><?= $pengguna->deskripsi ?></td>
                                             <td style="text-align: center;">
                                                 <a href="<?= base_url('pengguna/ubah/' . $pengguna->kode) ?>"
-                                                    class="btn btn-success btn-sm"><i
-                                                        class="fa fa-edit"></i>&nbsp;&nbsp;Edit</a>
+                                                    class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                                                 <a onclick="return confirm('apakah anda yakin?')"
                                                     href="<?= base_url('pengguna/hapus/' . $pengguna->kode) ?>"
-                                                    class="btn btn-danger btn-sm"><i
-                                                        class="fa fa-trash"></i>&nbsp;&nbsp;Hapus</a>
+                                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
@@ -93,6 +91,14 @@
     <script src="<?= base_url('sb-admin/js/demo/datatables-demo.js') ?>"></script>
     <script src="<?= base_url('sb-admin') ?>/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url('sb-admin') ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(document).on('click', '.close', function() {
+            <?= $this->session->set_flashdata('success', '') ?>
+            <?= $this->session->set_flashdata('error', '') ?>
+        })
+    })
+    </script>
 </body>
 
 </html>

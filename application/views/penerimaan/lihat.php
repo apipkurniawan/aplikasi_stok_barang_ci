@@ -98,6 +98,14 @@
     <script src="<?= base_url('sb-admin/js/demo/datatables-demo.js') ?>"></script>
     <script src="<?= base_url('sb-admin') ?>/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url('sb-admin') ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(document).on('click', '.close', function() {
+            <?= $this->session->set_flashdata('success', '') ?>
+            <?= $this->session->set_flashdata('error', '') ?>
+        })
+    })
+    </script>
 </body>
 
 </html>
