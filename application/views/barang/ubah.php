@@ -110,6 +110,15 @@
         </div>
     </div>
     <?php $this->load->view('partials/js.php') ?>
+    <script>
+    $(document).ready(function() {
+        if ($('input[name="stok"]').val() == 0) {
+            $('#satuan').prop('disabled', false);
+        } else {
+            $('#satuan').prop('disabled', true);
+        }
+    })
+    </script>
 </body>
 
 </html>
