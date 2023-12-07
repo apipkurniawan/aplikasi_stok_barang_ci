@@ -44,6 +44,7 @@ class Pengeluaran extends CI_Controller{
 			array_push($data_detail_keluar, ['no_keluar' => $this->input->post('no_keluar')]);
 			$data_detail_keluar[$i]['kode_barang'] = explode(" - ", $this->input->post('nama_barang_hidden')[$i])[1];
 			$data_detail_keluar[$i]['jumlah'] = $this->input->post('jumlah_hidden')[$i];
+			$data_detail_keluar[$i]['category'] = $this->input->post('category_hidden')[$i];
 			$data_detail_keluar[$i]['keterangan'] = $this->input->post('keterangan_hidden')[$i];
 		}
 
@@ -55,8 +56,8 @@ class Pengeluaran extends CI_Controller{
 					// - update stok ke tabel barang
 					$this->m_barang->min_stok($data_detail_keluar[$i]['jumlah'], $data_detail_keluar[$i]['kode_barang']) or die('gagal min stok');
 				} else {
-					// // klo kategori produk :
-					// // - cek ada berapa bahan baku -> m_detail_produk(kode_produk)
+					// klo kategori produk :
+					// - cek ada berapa bahan baku -> m_detail_produk(kode_produk)
 					// $kode_produk = $data_detail_keluar[$i]['kode_barang'];
 					// $detail_bahan_baku = $this->m_detail_produk->get_kode_bahan_baku($kode_produk);
 					// for ($i=0; $i < count($detail_bahan_baku); $i++) { 
