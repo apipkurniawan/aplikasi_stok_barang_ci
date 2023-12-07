@@ -8,8 +8,18 @@ class M_barang extends CI_Model{
 		return $query->result();
 	}
 
-	public function jumlah(){
+	public function jumlah() {
 		$query = $this->db->get($this->_table);
+		return $query->num_rows();
+	}
+
+	public function jumlah_non_bahan_baku() {
+		$query = $this->db->get_where($this->_table, 'bahan_baku = "N"');
+		return $query->num_rows();
+	}
+
+	public function jumlah_bahan_baku(){
+		$query = $this->db->get_where($this->_table, 'bahan_baku = "Y"');
 		return $query->num_rows();
 	}
 
