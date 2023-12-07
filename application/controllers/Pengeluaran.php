@@ -58,21 +58,19 @@ class Pengeluaran extends CI_Controller{
 				} else {
 					// klo kategori produk :
 					// - cek ada berapa bahan baku -> m_detail_produk(kode_produk)
-					// $kode_produk = $data_detail_keluar[$i]['kode_barang'];
-					// $detail_bahan_baku = $this->m_detail_produk->get_kode_bahan_baku($kode_produk);
-					// for ($i=0; $i < count($detail_bahan_baku); $i++) { 
-					// 	// - cek stok bahan baku tersedia -> m_barang(kode_barang)
-					// 	$stok_bahan_baku_tersedia = $this->m_barang->get_stok_barang($detail_bahan_baku[$i]);
-					// 	// - cek stok bahan baku terjual -> m_detail_produk(kode_produk, kode_barang)
-					// 	$qty = $this->m_detail_produk->get_formula_bahan_baku($kode_produk, $detail_bahan_baku[$i]);
+					$kode_produk = $data_detail_keluar[$i]['kode_barang'];
+					$detail_bahan_baku = $this->m_detail_produk->lihat_id($kode_produk);
+					foreach ($detail_bahan_baku as $row) {						
+						// - cek stok bahan baku tersedia -> m_barang(kode_barang)
+						$stok_bahan_baku_tersedia = $this->m_barang->get_stok_barang($row->kode_barang);
+						// - cek stok bahan baku terjual -> m_detail_produk(kode_produk, kode_barang)
+						$qty = $this->m_detail_produk->get_formula_bahan_baku($kode_produk, $row->kode_barang);
 						
-					// 	$stok_bahan_baku_terjual = intval($data_detail_keluar[$i]['jumlah']) * intval($qty);
+						$stok_bahan_baku_terjual = intval($data_detail_keluar[$i]['jumlah']) * intval($qty->qty);
 
-					// 	$total = intval($stok_bahan_baku_tersedia[0]->stok) - intval($stok_bahan_baku_terjual);
-
-					// 	// - update stok sesuai formula detail produk dan jumlahnya
-					// 	$this->m_barang->min_stok($total, $detail_bahan_baku[$i]) or die('gagal min stok');
-					// }
+						// - update stok sesuai formula detail produk dan jumlahnya
+						$this->m_barang->min_stok($stok_bahan_baku_terjual, $row->kode_barang) or die('gagal min stok');
+					}
 				}
 
 			}

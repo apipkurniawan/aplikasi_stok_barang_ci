@@ -39,13 +39,6 @@ class M_detail_produk extends CI_Model{
 		return $query->result();
 	}
 
-	public function get_kode_bahan_baku($kode_produk){
-		$query = $this->db->select('kode_barang');
-		$query = $this->db->where(['kode_produk' => $kode_produk]);
-		$query = $this->db->get($this->_table);
-		return $query->result();
-	}
-
 	public function get_formula_bahan_baku($kode_produk, $kode_barang){
 		$query = $this->db->select('qty');
 		$query = $this->db->where(['kode_produk' => $kode_produk, 'kode_barang' => $kode_barang]);
