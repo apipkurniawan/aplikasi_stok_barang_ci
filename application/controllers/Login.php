@@ -23,7 +23,7 @@ class Login extends CI_Controller{
 				$this->session->set_flashdata('error', 'Password Salah!');
 				redirect();
 			} else if($get_pengguna->kode_role != explode('-', $this->input->post('role'))[0]) {
-				$this->session->set_flashdata('error', 'Role Salah!');
+				$this->session->set_flashdata('error', 'Role Akses tidak sesuai!');
 				redirect();
 			} else {
 				$session = [
