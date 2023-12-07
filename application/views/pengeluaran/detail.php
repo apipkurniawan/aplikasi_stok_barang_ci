@@ -84,7 +84,8 @@
                                             <?php foreach ($all_detail_keluar as $detail_keluar): ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $detail_keluar->kode_barang ?></td>
+                                                <td><?= $detail_keluar->kode_barang ?> -
+                                                    <?= $detail_keluar->nama_barang ?></td>
                                                 <td><?= $detail_keluar->jumlah ?>
                                                     <?= strtolower($detail_keluar->satuan) ?></td>
                                                 <td><?= $detail_keluar->keterangan ?></td>
