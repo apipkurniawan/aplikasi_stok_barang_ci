@@ -74,7 +74,6 @@
                                             <td><?= $penerimaan->user ?></td>
                                             <td><?= $penerimaan->supplier ?></td>
                                             <td><?= $penerimaan->tgl_terima ?> <?= $penerimaan->jam_terima ?></td>
-                                            <?php if ($this->session->login['role'] == 'admin'): ?>
                                             <td style="text-align: center;">
                                                 <a href="<?= base_url('penerimaan/detail/' . $penerimaan->no_terima) ?>"
                                                     class="btn btn-success btn-sm mb-1"><i class="fa fa-eye"></i></a>
@@ -82,7 +81,6 @@
                                                     href="<?= base_url('penerimaan/hapus/' . $penerimaan->no_terima) ?>"
                                                     class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> -->
                                             </td>
-                                            <?php endif ?>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>

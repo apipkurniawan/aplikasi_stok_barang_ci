@@ -8,7 +8,11 @@ class M_detail_terima extends CI_Model {
 	}
 
 	public function lihat_no_terima($no_terima){
-		return $this->db->get_where($this->_table, ['no_terima' => $no_terima])->result();
+		$this->db->select('detail_terima.*, barang.satuan'); 		
+		$this->db->from('detail_terima'); 		
+		$this->db->join('barang', 'barang.kode_barang = detail_terima.kode_barang'); 		
+		$query = $this->db->get();		
+		return $query->result();
 	}
 
 	public function hapus($no_terima){
