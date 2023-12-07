@@ -23,7 +23,13 @@ class M_penerimaan extends CI_Model {
 	}
 
 	public function lihat_no_terima($no_terima){
-		return $this->db->get_where($this->_table, ['no_terima' => $no_terima])->row();
+		$this->db->select('penerimaan.*, pengguna.nama as user, supplier.nama as supplier'); 		
+		$this->db->from('penerimaan'); 		
+		$this->db->join('pengguna', 'pengguna.kode = penerimaan.kode_petugas'); 		
+		$this->db->join('supplier', 'supplier.kode_supplier = penerimaan.kode_supplier'); 		
+		$this->db->where('no_terima', $no_terima);
+		$query = $this->db->get(); 		
+		return $query->row();
 	}
 
 	public function tambah($data){

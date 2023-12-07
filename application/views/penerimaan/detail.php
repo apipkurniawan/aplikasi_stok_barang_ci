@@ -58,12 +58,12 @@
                                         <tr>
                                             <td><strong>Kode Petugas</strong></td>
                                             <td>:</td>
-                                            <td><?= $penerimaan->kode_petugas ?></td>
+                                            <td><?= $penerimaan->kode_petugas ?> - <?= $penerimaan->user ?></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Kode Supplier</strong></td>
                                             <td>:</td>
-                                            <td><?= $penerimaan->kode_supplier ?></td>
+                                            <td><?= $penerimaan->kode_supplier ?> - <?= $penerimaan->supplier ?></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Waktu Penerimaan</strong></td>
@@ -89,7 +89,8 @@
                                             <?php foreach ($all_detail_terima as $detail_terima): ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><?= $detail_terima->kode_barang ?></td>
+                                                <td><?= $detail_terima->kode_barang ?> -
+                                                    <?= $detail_terima->nama_barang ?></td>
                                                 <td><?= $detail_terima->jumlah ?>
                                                     <?= strtolower($detail_terima->satuan) ?></td>
                                                 <td><?= $detail_terima->keterangan ?></td>
