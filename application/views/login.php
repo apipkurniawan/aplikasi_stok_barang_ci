@@ -83,8 +83,8 @@
                                                     <div class="form-group">
                                                         <select name="role" id="role" class="form-control" required>
                                                             <option value="">Masuk Sebagai</option>
-                                                            <option value="petugas">Kasir</option>
-                                                            <option value="admin">Admin</option>
+                                                            <option value="01-admin">Admin</option>
+                                                            <option value="02-kasir">Kasir</option>
                                                         </select>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary btn-block"

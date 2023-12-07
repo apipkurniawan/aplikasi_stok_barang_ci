@@ -5,7 +5,7 @@ use Dompdf\Dompdf;
 class Barang extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
-		if($this->session->login['role'] != 'petugas' && $this->session->login['role'] != 'admin') redirect();
+		if($this->session->login['role'] != 'kasir' && $this->session->login['role'] != 'admin') redirect();
 		$this->data['aktif'] = 'barang';
 		$this->load->model('M_barang', 'm_barang');
 	}
@@ -19,7 +19,7 @@ class Barang extends CI_Controller{
 	}
 
 	public function tambah(){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Tambah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -30,7 +30,7 @@ class Barang extends CI_Controller{
 	}
 
 	public function proses_tambah(){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Tambah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -54,7 +54,7 @@ class Barang extends CI_Controller{
 	}
 
 	public function ubah($kode_barang){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -66,7 +66,7 @@ class Barang extends CI_Controller{
 	}
 
 	public function proses_ubah($kode_barang){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -89,7 +89,7 @@ class Barang extends CI_Controller{
 	}
 
 	public function hapus($kode_barang){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Hapus data hanya untuk admin!');
 			redirect('dashboard');
 		}

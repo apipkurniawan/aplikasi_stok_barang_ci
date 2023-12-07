@@ -54,6 +54,7 @@
                                             <td>Nama</td>
                                             <td>Username</td>
                                             <td>Password</td>
+                                            <td>Role Akses</td>
                                             <td>Aksi</td>
                                         </tr>
                                     </thead>
@@ -65,12 +66,13 @@
                                             <td><?= $pengguna->nama ?></td>
                                             <td><?= $pengguna->username ?></td>
                                             <td><?= $pengguna->password ?></td>
+                                            <td><?= $pengguna->deskripsi ?></td>
                                             <td style="text-align: center;">
-                                                <a href="<?= base_url('pengguna/ubah/' . $pengguna->id) ?>"
+                                                <a href="<?= base_url('pengguna/ubah/' . $pengguna->kode) ?>"
                                                     class="btn btn-success btn-sm"><i
                                                         class="fa fa-edit"></i>&nbsp;&nbsp;Edit</a>
                                                 <a onclick="return confirm('apakah anda yakin?')"
-                                                    href="<?= base_url('pengguna/hapus/' . $pengguna->id) ?>"
+                                                    href="<?= base_url('pengguna/hapus/' . $pengguna->kode) ?>"
                                                     class="btn btn-danger btn-sm"><i
                                                         class="fa fa-trash"></i>&nbsp;&nbsp;Hapus</a>
                                             </td>

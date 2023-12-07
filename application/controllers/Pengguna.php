@@ -5,13 +5,13 @@ use Dompdf\Dompdf;
 class Pengguna extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
-		if($this->session->login['role'] != 'petugas' && $this->session->login['role'] != 'admin') redirect();
+		if($this->session->login['role'] != 'kasir' && $this->session->login['role'] != 'admin') redirect();
 		$this->data['aktif'] = 'pengguna';
 		$this->load->model('M_pengguna', 'm_pengguna');
 	}
 
 	public function index(){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Managemen Pengguna hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -24,7 +24,7 @@ class Pengguna extends CI_Controller {
 	}
 
 	public function tambah(){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Tambah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -35,7 +35,7 @@ class Pengguna extends CI_Controller {
 	}
 
 	public function proses_tambah(){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Tambah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -45,6 +45,7 @@ class Pengguna extends CI_Controller {
 			'nama' => $this->input->post('nama'),
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password'),
+			'kode_role' => $this->input->post('role_akses'),
 		];
 
 		if($this->m_pengguna->tambah($data)){
@@ -57,7 +58,7 @@ class Pengguna extends CI_Controller {
 	}
 
 	public function ubah($id){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -69,7 +70,7 @@ class Pengguna extends CI_Controller {
 	}
 
 	public function proses_ubah($id){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -79,6 +80,7 @@ class Pengguna extends CI_Controller {
 			'nama' => $this->input->post('nama'),
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password'),
+			'kode_role' => $this->input->post('role_akses'),
 		];
 
 		if($this->m_pengguna->ubah($data, $id)){
@@ -91,7 +93,7 @@ class Pengguna extends CI_Controller {
 	}
 
 	public function hapus($id){
-		if ($this->session->login['role'] == 'petugas'){
+		if ($this->session->login['role'] == 'kasir'){
 			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
 			redirect('dashboard');
 		}
@@ -107,7 +109,6 @@ class Pengguna extends CI_Controller {
 
 	public function export(){
 		$dompdf = new Dompdf();
-		// $this->data['perusahaan'] = $this->m_usaha->lihat();
 		$this->data['all_pengguna'] = $this->m_pengguna->lihat();
 		$this->data['title'] = 'Laporan Data Pengguna';
 		$this->data['no'] = 1;

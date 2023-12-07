@@ -35,12 +35,6 @@
             <span>Data Supplier</span></a>
     </li>
 
-    <li class="nav-item <?= $aktif == 'petugas' ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= base_url('petugas') ?>">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Data User</span></a>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
 
