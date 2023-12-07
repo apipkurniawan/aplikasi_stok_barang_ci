@@ -34,7 +34,7 @@ class M_detail_produk extends CI_Model{
 	}
 
 	public function getDataRelasi($kode_produk){
-		$sql="SELECT dp.kode_produk, dp.kode_barang, b.nama_barang, dp.qty, dp.satuan FROM `detail_produk` dp INNER JOIN `barang` b ON dp.kode_barang = b.kode_barang WHERE dp.kode_produk = ?";    
+		$sql="SELECT dp.kode_produk, dp.kode_barang, b.nama_barang, dp.qty, b.satuan FROM `detail_produk` dp INNER JOIN `barang` b ON dp.kode_barang = b.kode_barang WHERE dp.kode_produk = ?";    
 		$query = $this->db->query($sql, array($kode_produk));
 		return $query->result();
 	}

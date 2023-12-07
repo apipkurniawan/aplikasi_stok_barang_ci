@@ -52,7 +52,6 @@ class Produk extends CI_Controller{
 			array_push($data_detail_produk, ['kode_produk' => $this->input->post('kode_produk')]);
 			$data_detail_produk[$i]['kode_barang'] = explode(" - ", $this->input->post('bahan_baku_hidden')[$i])[1];
 			$data_detail_produk[$i]['qty'] = $this->input->post('qty_hidden')[$i];
-			$data_detail_produk[$i]['satuan'] = $this->input->post('satuan_hidden')[$i];
 		}
 
 		if($this->m_produk->tambah($data_produk) && $this->m_detail_produk->tambah($data_detail_produk)){
