@@ -76,6 +76,7 @@ class Barang extends CI_Controller{
 			'nama_barang' => $this->input->post('nama_barang'),
 			'stok' => $this->input->post('stok'),
 			'satuan' => $this->input->post('satuan'),
+			'bahan_baku' => $this->input->post('bahan_baku'),
 			'keterangan' => $this->input->post('keterangan'),
 		];
 
