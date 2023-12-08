@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 07:22 AM
+-- Generation Time: Dec 08, 2023 at 04:34 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -37,24 +37,6 @@ CREATE TABLE `barang` (
   `keterangan` char(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `barang`
---
-
-INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `stok`, `satuan`, `bahan_baku`, `keterangan`) VALUES
-(78, '70641935', 'Chocolate Powder', 950, 'gram', 'Y', 'hati'),
-(79, '13819278', 'Fanta', 50, 'pcs', 'N', ''),
-(80, '92023045', 'Milk', 3000, 'mil', 'Y', ''),
-(81, '41512196', 'Cream', 40, 'kg', 'Y', ''),
-(82, '90007606', 'Sampoerna Mild', 25, 'pack', 'N', ''),
-(83, '71223650', 'Syrup', 50, 'mil', 'Y', ''),
-(84, '78406451', 'Soda', 0, 'mili', 'Y', ''),
-(85, '45692738', 'Espresso', 0, 'mili', 'Y', ''),
-(86, '18053819', 'Cadburry', 0, 'gram', 'Y', ''),
-(87, '94378979', 'Mint', 0, 'mili', 'Y', ''),
-(89, '44972146', 'Chocolate', 0, 'gram', 'Y', ''),
-(90, '96101900', 'aqua', 0, 'pcs', 'N', 'minuman pelengkap');
-
 -- --------------------------------------------------------
 
 --
@@ -86,15 +68,9 @@ CREATE TABLE `detail_keluar` (
   `no_keluar` varchar(25) DEFAULT NULL,
   `kode_barang` varchar(80) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
-  `keterangan` char(50) NOT NULL
+  `keterangan` char(50) NOT NULL,
+  `category` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `detail_keluar`
---
-
-INSERT INTO `detail_keluar` (`no_keluar`, `kode_barang`, `jumlah`, `keterangan`) VALUES
-('TR1701924169', '13819278', 10, '');
 
 -- --------------------------------------------------------
 
@@ -108,24 +84,6 @@ CREATE TABLE `detail_produk` (
   `qty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `detail_produk`
---
-
-INSERT INTO `detail_produk` (`kode_produk`, `kode_barang`, `qty`) VALUES
-('88212108', '70641935', 10),
-('88212108', '71223650', 20),
-('88212108', '92023045', 15),
-('51512508', '92023045', 10),
-('51512508', '41512196', 1),
-('51512508', '45692738', 10),
-('51512508', '71223650', 30),
-('92107411', '44972146', 10),
-('92107411', '45692738', 10),
-('92107411', '92023045', 20),
-('68153893', '18053819', 5),
-('68153893', '92023045', 30);
-
 -- --------------------------------------------------------
 
 --
@@ -138,13 +96,6 @@ CREATE TABLE `detail_terima` (
   `jumlah` int(11) DEFAULT NULL,
   `keterangan` char(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `detail_terima`
---
-
-INSERT INTO `detail_terima` (`no_terima`, `kode_barang`, `jumlah`, `keterangan`) VALUES
-('TR1701923990', '13819278', 5, '');
 
 -- --------------------------------------------------------
 
@@ -161,14 +112,6 @@ CREATE TABLE `penerimaan` (
   `kode_petugas` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `penerimaan`
---
-
-INSERT INTO `penerimaan` (`id`, `no_terima`, `tgl_terima`, `jam_terima`, `kode_supplier`, `kode_petugas`) VALUES
-(31, 'TR1701923901', '07/12/2023', '11:38:21', 'SPL740', 'SBU-01'),
-(32, 'TR1701923990', '07/12/2023', '11:39:50', 'SPL740', 'SBU-01');
-
 -- --------------------------------------------------------
 
 --
@@ -182,13 +125,6 @@ CREATE TABLE `pengeluaran` (
   `jam_keluar` varchar(10) DEFAULT NULL,
   `kode_petugas` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pengeluaran`
---
-
-INSERT INTO `pengeluaran` (`id`, `no_keluar`, `tgl_keluar`, `jam_keluar`, `kode_petugas`) VALUES
-(45, 'TR1701924169', '07/12/2023', '11:42:49', 'SBU-02');
 
 -- --------------------------------------------------------
 
@@ -224,16 +160,6 @@ CREATE TABLE `produk` (
   `nama_produk` varchar(30) NOT NULL,
   `satuan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `produk`
---
-
-INSERT INTO `produk` (`kode_produk`, `nama_produk`, `satuan`) VALUES
-('51512508', 'Cheese Cream', 'Cup'),
-('68153893', 'Chococadburry', 'Cup'),
-('88212108', 'Choco Banana', 'Cup'),
-('92107411', 'Cream Banana', 'Cup');
 
 -- --------------------------------------------------------
 
@@ -353,13 +279,13 @@ ALTER TABLE `data_toko`
 -- AUTO_INCREMENT for table `penerimaan`
 --
 ALTER TABLE `penerimaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `supplier`
